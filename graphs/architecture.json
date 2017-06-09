@@ -26,6 +26,16 @@
             "metadata": {
                 "description": "Live public transport data from Helsinki"
             }
+        },
+        {
+            "name": "Flowhub BIG IoT bridge",
+            "nodes": [
+                "serve",
+                "store"
+            ],
+            "metadata": {
+                "description": "Generic and reusable for all offerings"
+            }
         }
     ],
     "processes": {
@@ -80,7 +90,14 @@
             }
         },
         "serve": {
-          "component": "BIGIot/ServeOffering"
+            "component": "BIGIot/ServeOffering",
+            "metadata": {
+                "x": 432,
+                "y": 144,
+                "width": 72,
+                "height": 72,
+                "label": "serve"
+            }
         }
     },
     "connections": [
@@ -122,6 +139,16 @@
             "tgt": {
                 "process": "store",
                 "port": "offering2"
+            }
+        },
+        {
+            "src": {
+                "process": "store",
+                "port": "changed"
+            },
+            "tgt": {
+                "process": "serve",
+                "port": "notify"
             }
         },
         {
@@ -167,21 +194,11 @@
             }
         },
         {
-          "data": "80",
-          "tgt": {
-            "process": "serve",
-            "port": "port"
-          }
-        },
-        {
-          "src": {
-            "process": "store",
-            "port": "changed"
-          },
-          "tgt": {
-            "process": "serve",
-            "port": "notify"
-          }
+            "data": "80",
+            "tgt": {
+                "process": "serve",
+                "port": "port"
+            }
         }
     ]
 }
