@@ -1,0 +1,10 @@
+BerlinStromNetz(CheckUpdates) CSV -> RAW electricityData(ApplySemanticTags) ANNOTATED -> OFFERING1 bridge(BIGIotBridge)
+HelsinkiPublicTransport(CheckUpdates) -> RAW transportData(ApplySemanticTags) ANNOTATED -> OFFERING2 bridge
+ 
+'1000' -> INTERVAL BerlinStromNetz
+'https://....' -> URL BerlinStromNetz
+'electricity' -> SCHEMA electricityDataOffering
+ 
+'60' -> INTERVAL HelsinkiPublicTransport
+'mqtts://...' -> URL HelsinkiPublicTransport
+'transportation' -> SCHEMA transportDataOffering
