@@ -1,0 +1,167 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "architecture",
+        "environment": {}
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [
+        {
+            "name": "Offering 1",
+            "nodes": [
+                "BerlinStromNetz",
+                "electricityData"
+            ],
+            "metadata": {
+                "description": "Electricity consumption in Berlin"
+            }
+        },
+        {
+            "name": "Offering 2",
+            "nodes": [
+                "HelsinkiPublicTransport",
+                "transportData"
+            ],
+            "metadata": {
+                "description": "Live public transport data from Helsinki"
+            }
+        }
+    ],
+    "processes": {
+        "BerlinStromNetz": {
+            "component": "CheckUpdates",
+            "metadata": {
+                "x": -72,
+                "y": 36,
+                "width": 72,
+                "height": 72,
+                "label": "BerlinStromNetz"
+            }
+        },
+        "electricityData": {
+            "component": "ApplySemanticTags",
+            "metadata": {
+                "x": 108,
+                "y": 36,
+                "width": 72,
+                "height": 72,
+                "label": "electricityData"
+            }
+        },
+        "bridge": {
+            "component": "BIGIotBridge",
+            "metadata": {
+                "x": 288,
+                "y": 144,
+                "width": 72,
+                "height": 72,
+                "label": "bridge"
+            }
+        },
+        "HelsinkiPublicTransport": {
+            "component": "CheckUpdates",
+            "metadata": {
+                "x": -72,
+                "y": 216,
+                "width": 72,
+                "height": 72,
+                "label": "HelsinkiPublicTransport"
+            }
+        },
+        "transportData": {
+            "component": "ApplySemanticTags",
+            "metadata": {
+                "x": 108,
+                "y": 216,
+                "width": 72,
+                "height": 72,
+                "label": "transportData"
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "BerlinStromNetz",
+                "port": "csv"
+            },
+            "tgt": {
+                "process": "electricityData",
+                "port": "raw"
+            }
+        },
+        {
+            "src": {
+                "process": "electricityData",
+                "port": "annotated"
+            },
+            "tgt": {
+                "process": "bridge",
+                "port": "offering1"
+            }
+        },
+        {
+            "src": {
+                "process": "HelsinkiPublicTransport",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "transportData",
+                "port": "raw"
+            }
+        },
+        {
+            "src": {
+                "process": "transportData",
+                "port": "annotated"
+            },
+            "tgt": {
+                "process": "bridge",
+                "port": "offering2"
+            }
+        },
+        {
+            "data": "1000",
+            "tgt": {
+                "process": "BerlinStromNetz",
+                "port": "interval"
+            }
+        },
+        {
+            "data": "https://....",
+            "tgt": {
+                "process": "BerlinStromNetz",
+                "port": "url"
+            }
+        },
+        {
+            "data": "electricity",
+            "tgt": {
+                "process": "electricityData",
+                "port": "schema"
+            }
+        },
+        {
+            "data": "60",
+            "tgt": {
+                "process": "HelsinkiPublicTransport",
+                "port": "interval"
+            }
+        },
+        {
+            "data": "mqtts://...",
+            "tgt": {
+                "process": "HelsinkiPublicTransport",
+                "port": "url"
+            }
+        },
+        {
+            "data": "transportation",
+            "tgt": {
+                "process": "transportData",
+                "port": "schema"
+            }
+        }
+    ]
+}
