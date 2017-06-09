@@ -49,14 +49,14 @@
                 "label": "electricityData"
             }
         },
-        "bridge": {
-            "component": "BIGIotBridge",
+        "store": {
+            "component": "BIGIot/StoreData",
             "metadata": {
                 "x": 288,
                 "y": 144,
                 "width": 72,
                 "height": 72,
-                "label": "bridge"
+                "label": "store"
             }
         },
         "HelsinkiPublicTransport": {
@@ -78,6 +78,9 @@
                 "height": 72,
                 "label": "transportData"
             }
+        },
+        "serve": {
+          "component": "BIGIot/ServeOffering"
         }
     },
     "connections": [
@@ -97,7 +100,7 @@
                 "port": "annotated"
             },
             "tgt": {
-                "process": "bridge",
+                "process": "store",
                 "port": "offering1"
             }
         },
@@ -117,7 +120,7 @@
                 "port": "annotated"
             },
             "tgt": {
-                "process": "bridge",
+                "process": "store",
                 "port": "offering2"
             }
         },
@@ -162,6 +165,23 @@
                 "process": "transportData",
                 "port": "schema"
             }
+        },
+        {
+          "data": "80",
+          "tgt": {
+            "process": "serve",
+            "port": "port"
+          }
+        },
+        {
+          "src": {
+            "process": "store",
+            "port": "changed"
+          },
+          "tgt": {
+            "process": "serve",
+            "port": "notify"
+          }
         }
     ]
 }
