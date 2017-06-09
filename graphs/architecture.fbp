@@ -3,8 +3,8 @@ HelsinkiPublicTransport(CheckUpdates) -> RAW transportData(ApplySemanticTags) AN
  
 '1000' -> INTERVAL BerlinStromNetz
 'https://....' -> URL BerlinStromNetz
-'electricity' -> SCHEMA electricityDataOffering
+'electricity' -> SCHEMA electricityData
  
 '60' -> INTERVAL HelsinkiPublicTransport
 'mqtts://...' -> URL HelsinkiPublicTransport
-'transportation' -> SCHEMA transportDataOffering
+'transportation' -> SCHEMA transportData
