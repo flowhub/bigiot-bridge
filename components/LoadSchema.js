@@ -5,18 +5,19 @@ const ParkingSpaceOffering = {
   type: 'array',
   items: {
     type: 'object',
+    required: ['Latitude', 'Longitude', 'status'],
     properties: {
       'Latitude': { 
         type: 'number',
         example: 48.25,
         minimum: -90,
-        maximum: -90,
+        maximum: 90,
       },
       'Longitude': {
         type: 'number',
         example: 11.63,
         minimum: -90,
-        maximum: -90,
+        maximum: 90,
       },
       'status': {
         type: 'string',
