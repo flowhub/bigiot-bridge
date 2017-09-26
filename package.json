@@ -1,0 +1,29 @@
+{
+  "name": "flowhub-bigiot-bridge",
+  "version": "0.0.1",
+  "description": "Offer data in BigIot marketplace using Flowhub IoT platform",
+  "main": "index.js",
+  "dependencies": {
+    "fbp": "^1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flowhub/bigiot-bridge.git"
+  },
+  "keywords": [
+    "bigiot",
+    "flowhub",
+    "noflo",
+    "msgflo"
+  ],
+  "author": "Jon Nordby <jon@flowhub.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowhub/bigiot-bridge/issues"
+  },
+  "homepage": "https://github.com/flowhub/bigiot-bridge#readme"
+}
