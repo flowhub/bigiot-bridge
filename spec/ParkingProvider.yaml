@@ -1,0 +1,36 @@
+name: "Parking data transformation"
+topic: "flowhub-bigiot-bridge/NormalizeParkingData"
+fixture:
+ type: 'fbp'
+ data: |
+  INPORT=read.IN:occupancy
+  INPORT=readSpaces.IN:spaces
+  OUTPORT=validate.ERRORS:validationerrors
+  OUTPORT=errors.OUT:error
+
+  read(filesystem/ReadFile) -> occupancy(strings/ParseJson)
+  readSpaces(filesystem/ReadFile) -> spaces(strings/ParseJson)
+  '!' -> START (objects/CreateObject) -> mergeOccupancy(objects/SetPropertyValue) -> mergeSpaces(objects/SetPropertyValue)
+  'occupancy' -> PROPERTY mergeOccupancy
+  occupancy -> VALUE mergeOccupancy
+  'spaces' -> PROPERTY mergeSpaces
+  spaces -> VALUE mergeSpaces
+
+  mergeSpaces -> testee(NormalizeParkingData) -> validate(ValidateData)
+  'bigiot/ParkingSpaceOffering' -> schema(LoadSchema) -> SCHEMA validate
+
+  read ERROR -> errors(core/Repeat)  
+  readSpaces ERROR -> errors
+  occupancy ERROR -> errors
+  spaces ERROR -> errors
+  schema ERROR -> errors
+cases:
+-
+  name: 'with known-good API data'
+  assertion: 'output should be valid'
+  inputs:
+    spaces: 'spec/data/bahnpark/spaces-26.09.2017.json'
+    occupancy: 'spec/data/bahnpark/occupancies-13.23-26.09.2017.json'
+  expect:
+    validationerrors:
+      equals: []

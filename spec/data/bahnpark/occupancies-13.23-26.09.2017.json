@@ -1,0 +1,820 @@
+{
+   "allocations" : [ {
+      "space" : {
+         "id" : 100035,
+         "title" : "Bonn Hbf P1 Bonn Hbf P1 Parkhaus",
+         "station" : {
+            "id" : 767,
+            "name" : "Bonn Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Bonn Hauptbahnhof",
+         "nameDisplay" : "Bonn Hbf P1 Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 110,
+         "category" : 3,
+         "text" : "> 30"
+      }
+   }, {
+      "space" : {
+         "id" : 100291,
+         "title" : "Ulm Hbf P2 Ulm Hbf P2 Parkplatz",
+         "station" : {
+            "id" : 6323,
+            "name" : "Ulm Hbf"
+         },
+         "label" : "P2",
+         "name" : "Parkplatz Ulm Hauptbahnhof",
+         "nameDisplay" : "Ulm Hbf P2 Parkplatz"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:23:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 115,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100103,
+         "title" : "Göttingen P2 Göttingen P2 Parkhaus",
+         "station" : {
+            "id" : 2218,
+            "name" : "Göttingen"
+         },
+         "label" : "P2",
+         "name" : "Parkhaus am Bahnhof",
+         "nameDisplay" : "Göttingen P2 Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:48",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 314,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100102,
+         "title" : "Göttingen P1 Göttingen P1 Parkplatz",
+         "station" : {
+            "id" : 2218,
+            "name" : "Göttingen"
+         },
+         "label" : "P1",
+         "nameDisplay" : "Göttingen P1 Parkplatz"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:48",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 97,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100169,
+         "title" : "Kassel-Wilhelmshöhe P1 Kassel Wilhelmshöhe P1 Parkplatz",
+         "station" : {
+            "id" : 3127,
+            "name" : "Kassel-Wilhelmshöhe"
+         },
+         "label" : "P1",
+         "name" : "Parkplatz Bahnhof Kassel-Wilhelmshöhe",
+         "nameDisplay" : "Kassel Wilhelmshöhe P1 Parkplatz"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:12",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 26,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100040,
+         "title" : "Braunschweig Hbf P1 Braunschweig Hbf P1 Parkplatz Nord",
+         "station" : {
+            "id" : 835,
+            "name" : "Braunschweig Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkplatz Hauptbahnhof Nord",
+         "nameDisplay" : "Braunschweig Hbf P1 Parkplatz Nord"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 158,
+         "category" : 3,
+         "text" : "> 30"
+      }
+   }, {
+      "space" : {
+         "id" : 100043,
+         "title" : "Bremen Hbf P1 Bremen Hbf P1 Hochgarage am Bahnhof",
+         "station" : {
+            "id" : 855,
+            "name" : "Bremen Hbf"
+         },
+         "label" : "P1",
+         "name" : "Hochgarage am Bahnhof",
+         "nameDisplay" : "Bremen Hbf P1 Hochgarage am Bahnhof"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:58",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 250,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100170,
+         "title" : "Kassel-Wilhelmshöhe P2 Kassel Wilhelmshöhe P2 Parkdeck",
+         "station" : {
+            "id" : 3127,
+            "name" : "Kassel-Wilhelmshöhe"
+         },
+         "label" : "P2",
+         "name" : "Parkdeck Bahnhof Kassel-Wilhelmshöhe",
+         "nameDisplay" : "Kassel Wilhelmshöhe P2 Parkdeck"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:12",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 340,
+         "category" : 1,
+         "text" : "bis 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100111,
+         "title" : "Gießen P1 Gießen P1 Parkhaus am Bahnhof",
+         "station" : {
+            "id" : 2120,
+            "name" : "Gießen"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus am Bahnhof",
+         "nameDisplay" : "Gießen P1 Parkhaus am Bahnhof"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:22:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 245,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100240,
+         "title" : "Passau Hbf P4 Passau Hbf P4 Parkhaus Donaupassage",
+         "station" : {
+            "id" : 4872,
+            "name" : "Passau Hbf"
+         },
+         "label" : "P4",
+         "name" : "Parkhaus Donaupassage",
+         "nameDisplay" : "Passau Hbf P4 Parkhaus Donaupassage"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 384,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100115,
+         "title" : "Hamburg Hbf P1 Hamburg Hbf P1 Parkhaus Hbf Centrum Hühnerposten",
+         "station" : {
+            "id" : 2514,
+            "name" : "Hamburg Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Hauptbahnhof Centrum Hühnerposten",
+         "nameDisplay" : "Hamburg Hbf P1 Parkhaus Hbf Centrum Hühnerposten"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:07",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 352,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100114,
+         "title" : "Halle (Saale) Hbf P3 Halle Hbf P3 Tiefgarage Charlottencenter",
+         "station" : {
+            "id" : 2498,
+            "name" : "Halle (Saale) Hbf"
+         },
+         "label" : "P3",
+         "name" : "Tiefgarage Charlottencenter",
+         "nameDisplay" : "Halle Hbf P3 Tiefgarage Charlottencenter"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:23:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 380,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100309,
+         "title" : "Wolfsburg Hbf P2 Wolfsburg Hbf P2 Tiefgarage Hbf / Kino",
+         "station" : {
+            "id" : 6859,
+            "name" : "Wolfsburg Hbf"
+         },
+         "label" : "P2",
+         "name" : "Tiefgarage Hauptbahnhof / Kino",
+         "nameDisplay" : "Wolfsburg Hbf P2 Tiefgarage Hbf / Kino"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:22:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 67,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100308,
+         "title" : "Wolfsburg Hbf P1 Wolfsburg Hbf P1 Parkdeck",
+         "station" : {
+            "id" : 6859,
+            "name" : "Wolfsburg Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkdeck Wolfsburg Hauptbahnhof",
+         "nameDisplay" : "Wolfsburg Hbf P1 Parkdeck"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:21:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 100,
+         "category" : 1,
+         "text" : "bis 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100054,
+         "title" : "Düren P1 Düren P1 Parkplatz Ludwig-Erhardt-Platz",
+         "station" : {
+            "id" : 1392,
+            "name" : "Düren"
+         },
+         "label" : "P1",
+         "name" : "Ludwig-Erhard-Platz",
+         "nameDisplay" : "Düren P1 Parkplatz Ludwig-Erhardt-Platz"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:59",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 191,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100058,
+         "title" : "Düsseldorf Hbf P3 Düsseldorf Hbf P3 Parkhaus",
+         "station" : {
+            "id" : 1401,
+            "name" : "Düsseldorf Hbf"
+         },
+         "label" : "P3",
+         "name" : "Parkhaus Düsseldorf Hauptbahnhof",
+         "nameDisplay" : "Düsseldorf Hbf P3 Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:21:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 1085,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100252,
+         "title" : "Regensburg Hbf P5 Regensburg Hbf P5 Tiefgarage Hbf / Castra Regina Center",
+         "station" : {
+            "id" : 5169,
+            "name" : "Regensburg Hbf"
+         },
+         "label" : "P5",
+         "name" : "Tiefgarage Hauptbahnhof / Castra Regina Center",
+         "nameDisplay" : "Regensburg Hbf P5 Tiefgarage Hbf / Castra Regina Center"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:22:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 278,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100066,
+         "title" : "Duisburg Hbf P2 Duisburg Hbf P2 Parkhaus",
+         "station" : {
+            "id" : 1374,
+            "name" : "Duisburg Hbf"
+         },
+         "label" : "P2",
+         "name" : "Parkhaus Duisburg Hauptbahnhof",
+         "nameDisplay" : "Duisburg Hbf P2 Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:20:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 200,
+         "category" : 1,
+         "text" : "bis 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100130,
+         "title" : "Hannover Hbf P7 Hannover Hbf P7 Tiefgarage Augustenstraße",
+         "station" : {
+            "id" : 2545,
+            "name" : "Hannover Hbf"
+         },
+         "label" : "P7",
+         "name" : "Tiefgarage Hauptbahnhof Augustenstraße",
+         "nameDisplay" : "Hannover Hbf P7 Tiefgarage Augustenstraße"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:21:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 138,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100197,
+         "title" : "Magdeburg Hbf P2 Magdeburg Hbf P2 City Carré ",
+         "station" : {
+            "id" : 3881,
+            "name" : "Magdeburg Hbf"
+         },
+         "label" : "P2",
+         "name" : "City Carré / Hbf - Tiefpreisparken",
+         "nameDisplay" : "Magdeburg Hbf P2 City Carré "
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:22:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 554,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100196,
+         "title" : "Magdeburg Hbf P1 Magdeburg Hbf P1 Parkgarage City Carré",
+         "station" : {
+            "id" : 3881,
+            "name" : "Magdeburg Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkgarage City Carré / Hauptbahnhof",
+         "nameDisplay" : "Magdeburg Hbf P1 Parkgarage City Carré"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:22:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 220,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100006,
+         "title" : "Aschaffenburg Hbf P1 Aschaffenburg Hbf P1 Parkhaus",
+         "station" : {
+            "id" : 187,
+            "name" : "Aschaffenburg Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Aschaffenburg Hauptbahnhof",
+         "nameDisplay" : "Aschaffenburg Hbf P1 Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:47",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 400,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100134,
+         "title" : "Heilbronn Hbf P1 Heilbronn Hbf P1 Parkplatz",
+         "station" : {
+            "id" : 2648,
+            "name" : "Heilbronn Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkplatz Heilbronn Hauptbahnhof",
+         "nameDisplay" : "Heilbronn Hbf P1 Parkplatz"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:26:00",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 165,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100073,
+         "title" : "Essen Hbf P1 Essen Hbf P1 Parkhaus",
+         "station" : {
+            "id" : 1690,
+            "name" : "Essen Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Essen Hauptbahnhof",
+         "nameDisplay" : "Essen Hbf P1 Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 395,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100201,
+         "title" : "Mainz Hbf P3 Mainz Hbf P3 Tiefgarage Bonifazius-Türme UG -1",
+         "station" : {
+            "id" : 3898,
+            "name" : "Mainz Hbf"
+         },
+         "label" : "P3",
+         "name" : "Tiefgarage Bonifazius-Türme UG -1",
+         "nameDisplay" : "Mainz Hbf P3 Tiefgarage Bonifazius-Türme UG -1"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:18:00",
+         "timeSegment" : "2017-09-26T13:15:00",
+         "capacity" : 25
+      }
+   }, {
+      "space" : {
+         "id" : 100202,
+         "title" : "Mainz Hbf P4 Mainz Hbf P4 Tiefgarage Bonifazius-Türme UG -2",
+         "station" : {
+            "id" : 3898,
+            "name" : "Mainz Hbf"
+         },
+         "label" : "P4",
+         "name" : "Tiefgarage Bonifazius-Türme UG -2",
+         "nameDisplay" : "Mainz Hbf P4 Tiefgarage Bonifazius-Türme UG -2"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:18:00",
+         "timeSegment" : "2017-09-26T13:15:00",
+         "capacity" : 176,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100081,
+         "title" : "Frankfurt (Main) Hbf P1 Frankfurt (Main) Hbf P1 Tiefgarage Hbf Nord",
+         "station" : {
+            "id" : 1866,
+            "name" : "Frankfurt (Main) Hbf"
+         },
+         "label" : "P1",
+         "name" : "Tiefgarage Hauptbahnhof Nord",
+         "nameDisplay" : "Frankfurt (Main) Hbf P1 Tiefgarage Hbf Nord"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:23:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 350,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100083,
+         "title" : "Frankfurt (Main) Hbf P3 Frankfurt (Main) Hbf P3 Vorfahrt II",
+         "station" : {
+            "id" : 1866,
+            "name" : "Frankfurt (Main) Hbf"
+         },
+         "label" : "P3",
+         "name" : "Hauptbahnhof Vorfahrt II",
+         "nameDisplay" : "Frankfurt (Main) Hbf P3 Vorfahrt II"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:21:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 17,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100275,
+         "title" : "Stuttgart Hbf P1 Stuttgart Hbf P1 Tiefgarage LBBW",
+         "station" : {
+            "id" : 6071,
+            "name" : "Stuttgart Hbf"
+         },
+         "label" : "P1",
+         "name" : "Tiefgarage LBBW",
+         "nameDisplay" : "Stuttgart Hbf P1 Tiefgarage LBBW"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:21:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 745,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100082,
+         "title" : "Frankfurt (Main) Hbf P2 Frankfurt (Main) Hbf P2 Vorfahrt I",
+         "station" : {
+            "id" : 1866,
+            "name" : "Frankfurt (Main) Hbf"
+         },
+         "label" : "P2",
+         "name" : "Hauptbahnhof Vorfahrt I",
+         "nameDisplay" : "Frankfurt (Main) Hbf P2 Vorfahrt I"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:21:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 47,
+         "category" : 1,
+         "text" : "bis 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100210,
+         "title" : "München Hbf P1 München Hbf P1 Vorplatz Bayerstraße",
+         "station" : {
+            "id" : 4234,
+            "name" : "München Hbf"
+         },
+         "label" : "P1",
+         "name" : "Parkplatz Bayerstraße",
+         "nameDisplay" : "München Hbf P1 Vorplatz Bayerstraße"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:35",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 28,
+         "category" : 1,
+         "text" : "bis 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100213,
+         "title" : "München Hbf P4 München Hbf P4 Tiefgarage Hbf Süd",
+         "station" : {
+            "id" : 4234,
+            "name" : "München Hbf"
+         },
+         "label" : "P4",
+         "name" : "Tiefgarage München Hauptbahnhof Süd",
+         "nameDisplay" : "München Hbf P4 Tiefgarage Hbf Süd"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:16:00",
+         "timeSegment" : "2017-09-26T13:15:00",
+         "capacity" : 200,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100023,
+         "title" : "Berlin Ostbahnhof P1 Berlin Ostbahnhof P1 Parkplatz",
+         "station" : {
+            "id" : 530,
+            "name" : "Berlin Ostbahnhof"
+         },
+         "label" : "P1",
+         "name" : "Parkplatz Berlin Ostbahnhof",
+         "nameDisplay" : "Berlin Ostbahnhof P1 Parkplatz"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:00",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 89,
+         "category" : 3,
+         "text" : "> 30"
+      }
+   }, {
+      "space" : {
+         "id" : 100279,
+         "title" : "Stuttgart-Bad Cannstatt P2 Stuttgart-Bad Cannstatt P2 Parkhaus Wilhelmsplatz Ebenen -1 bis 6",
+         "station" : {
+            "id" : 6077,
+            "name" : "Stuttgart-Bad Cannstatt"
+         },
+         "label" : "P2",
+         "name" : "Ebenen -1 bis 6",
+         "nameDisplay" : "Stuttgart-Bad Cannstatt P2 Parkhaus Wilhelmsplatz Ebenen -1 bis 6"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 125,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100278,
+         "title" : "Stuttgart-Bad Cannstatt P1 Stuttgart-Bad Cannstatt P1 Parkhaus Wilhelmsplatz Ebenen 7 bis 12",
+         "station" : {
+            "id" : 6077,
+            "name" : "Stuttgart-Bad Cannstatt"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Wilhelmsplatz Ebenen 7 bis 12",
+         "nameDisplay" : "Stuttgart-Bad Cannstatt P1 Parkhaus Wilhelmsplatz Ebenen 7 bis 12"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 129,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100025,
+         "title" : "Berlin Südkreuz P1 Berlin Südkreuz P1 Parkdeck",
+         "station" : {
+            "id" : 4859,
+            "name" : "Berlin Südkreuz"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Bahnhof Berlin Südkreuz",
+         "nameDisplay" : "Berlin Südkreuz P1 Parkdeck"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:19:00",
+         "timeSegment" : "2017-09-26T13:15:00",
+         "capacity" : 150,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100024,
+         "title" : "Berlin Ostbahnhof P2 Berlin Ostbahnhof P2 Tiefgarage",
+         "station" : {
+            "id" : 530,
+            "name" : "Berlin Ostbahnhof"
+         },
+         "label" : "P2",
+         "name" : "Tiefgarage Berlin Ostbahnhof",
+         "nameDisplay" : "Berlin Ostbahnhof P2 Tiefgarage"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:00",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 180,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100280,
+         "title" : "Stuttgart-Bad Cannstatt P3 Stuttgart-Bad Cannstatt P3 Parkhaus Wilhelmsplatz Ebenen -3 und -2",
+         "station" : {
+            "id" : 6077,
+            "name" : "Stuttgart-Bad Cannstatt"
+         },
+         "label" : "P3",
+         "name" : "Ebenen -3 und -2",
+         "nameDisplay" : "Stuttgart-Bad Cannstatt P3 Parkhaus Wilhelmsplatz Ebenen -3 und -2"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 38,
+         "category" : 2,
+         "text" : "> 10"
+      }
+   }, {
+      "space" : {
+         "id" : 100090,
+         "title" : "Freiburg (Breisgau) Hbf P1 Freiburg (Breisgau) Hbf P1 Tiefgarage am Bahnhof",
+         "station" : {
+            "id" : 1893,
+            "name" : "Freiburg (Breisgau) Hbf"
+         },
+         "label" : "P1",
+         "name" : "Tiefgarage am Bahnhof",
+         "nameDisplay" : "Freiburg (Breisgau) Hbf P1 Tiefgarage am Bahnhof"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:18:00",
+         "timeSegment" : "2017-09-26T13:15:00",
+         "capacity" : 138,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100031,
+         "title" : "Bietigheim-Bissingen P1 Bietigheim-Bissingen P1 Parkhaus Süd",
+         "station" : {
+            "id" : 636,
+            "name" : "Bietigheim-Bissingen"
+         },
+         "label" : "P1",
+         "name" : "Parkhaus Stuttgarter Straße Süd",
+         "nameDisplay" : "Bietigheim-Bissingen P1 Parkhaus Süd"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:25:14",
+         "timeSegment" : "2017-09-26T13:25:00",
+         "capacity" : 291,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   }, {
+      "space" : {
+         "id" : 100158,
+         "title" : "Kaiserslautern Hbf P2 Kaiserslautern Hbf P2 Park+Ride-Parkhaus",
+         "station" : {
+            "id" : 3082,
+            "name" : "Kaiserslautern Hbf"
+         },
+         "label" : "P2",
+         "name" : "Park+Ride-Parkhaus Hauptbahnhof",
+         "nameDisplay" : "Kaiserslautern Hbf P2 Park+Ride-Parkhaus"
+      },
+      "allocation" : {
+         "validData" : true,
+         "timestamp" : "2017-09-26T13:24:00",
+         "timeSegment" : "2017-09-26T13:20:00",
+         "capacity" : 179,
+         "category" : 4,
+         "text" : "> 50"
+      }
+   } ]
+}
