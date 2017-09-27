@@ -7,43 +7,43 @@ const ParkingSpaceOffering = {
     type: 'object',
     required: ['Latitude', 'Longitude', 'status'],
     properties: {
-      'Latitude': { 
+      Latitude: {
         type: 'number',
         example: 48.25,
         minimum: -90,
         maximum: 90,
       },
-      'Longitude': {
+      Longitude: {
         type: 'number',
         example: 11.63,
         minimum: -90,
         maximum: 90,
       },
-      'status': {
+      status: {
         type: 'string',
-        'enum': [ 'available', 'unknown' ], 
+        enum: ['available', 'unknown'],
       },
-    }
-  }
-}
+    },
+  },
+};
 
 const schemas = {
-    'bigiot/ParkingSpaceOffering': ParkingSpaceOffering, 
-}
+  'bigiot/ParkingSpaceOffering': ParkingSpaceOffering,
+};
 
-exports.getComponent = function() {
-  var c = new noflo.Component();
+exports.getComponent = function () {
+  const c = new noflo.Component();
   c.description = 'Load a named schema';
   c.icon = 'forward';
   c.inPorts.add('in', {
     datatype: 'string',
-    description: 'JSON schema identifier'
+    description: 'JSON schema identifier',
   });
   c.outPorts.add('out', {
-    datatype: 'object'
+    datatype: 'object',
   });
   c.outPorts.add('error', {
-    datatype: 'object'
+    datatype: 'object',
   });
 
   c.process(function (input, output) {
@@ -53,9 +53,10 @@ exports.getComponent = function() {
     const name = input.getData('in');
     const found = schemas[name];
     if (!found) {
-      return output.error(new Error(`Could not find schema named $(name)`));
+      output.error(new Error(`Could not find schema named ${name}`));
+      return;
     }
-    output.sendDone({ out: found, });
+    output.sendDone({ out: found });
   });
 
   return c;

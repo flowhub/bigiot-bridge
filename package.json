@@ -10,13 +10,19 @@
     "noflo-filesystem": "^1.2.1",
     "noflo-nodejs": "^0.8.1",
     "noflo-objects": "^0.3.0",
-    "noflo-strings": "^0.3.1"
+    "noflo-strings": "^0.3.1",
+    "tv4": "^1.3.0"
   },
   "devDependencies": {
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
     "fbp-spec": "^0.2.1"
   },
   "scripts": {
-    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --register=false --secret test' spec/"
+    "spec": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --register=false --secret test' spec/",
+    "lint": "eslint components/*.js",
+    "test": "npm run lint && npm run spec"
   },
   "repository": {
     "type": "git",
