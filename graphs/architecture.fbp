@@ -1,5 +1,7 @@
 '[{id,schema}, ..]' -> CONFIG server(OfferingServer)
 
+# @runtime msgflo
+
 # Parking
 server REQUEST -> parkingProvider(DBahnPark) RESPONSE -> RESPONSE server
 parkingProvider ERROR -> FAILED server
