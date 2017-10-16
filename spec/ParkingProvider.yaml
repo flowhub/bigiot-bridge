@@ -74,4 +74,4 @@ cases:
     token: 'invalid-api-token'
   expect:
     fetcherror:
-      contains: '401'
+      contains: 'status code:'
