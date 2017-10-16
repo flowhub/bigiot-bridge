@@ -45,7 +45,7 @@ exports.getComponent = function () {
     datatype: 'object',
   });
 
-  c.process(function (input, output) {
+  c.process((input, output) => {
     if (!input.hasData('in')) {
       return;
     }

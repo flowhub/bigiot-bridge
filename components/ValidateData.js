@@ -20,7 +20,7 @@ exports.getComponent = function () {
     datatype: 'array',
     description: 'Array of errors. If valid will be empty',
   });
-  c.process(function (input, output) {
+  c.process((input, output) => {
     // Check preconditions on input data
     if (!input.hasData('schema', 'in')) {
       return;
