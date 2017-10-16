@@ -8,6 +8,11 @@ COPY . .
 
 RUN npm install --production
 
+# Run the image as a non-root user
+RUN adduser -D flowuser
+USER flowuser
+
 # Note: EXPOSE is not supported by Heroku, application must respect $PORT
 EXPOSE 5000
+
 CMD ["node", "index.js"]
