@@ -1,0 +1,6 @@
+'!!!' -> fetch(FetchParkingData)
+
+# TODO: normalize, validate and persist
+
+fetch ERROR -> errors(core/Output)
+fetch OUT -> out(core/Output)

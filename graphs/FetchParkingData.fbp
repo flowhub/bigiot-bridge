@@ -1,0 +1,22 @@
+INPORT=hold.IN:IN
+OUTPORT=errors.OUT:error
+OUTPORT=merge.OUT:out
+
+'/bahnpark/v1/spaces?limit=1000' -> STRING holdSpaces(strings/SendString)
+'/bahnpark/v1/spaces/occupancies?limit=1000' -> STRING holdOccupancy(strings/SendString)
+
+hold(core/RepeatAsync) -> IN holdSpaces
+hold -> IN holdOccupancy
+
+holdSpaces -> (ParkingRequest) -> getSpaces(HttpGet) -> spaces(strings/ParseJson)
+holdOccupancy -> (ParkingRequest) -> getOccupancy(HttpGet) -> occupancy(strings/ParseJson)
+
+spaces OUT -> SPACES merge(MergeParkingData)
+occupancy OUT -> OCCUPANCY merge
+
+errors(core/Repeat)
+spaces ERROR -> errors
+occupancy ERROR -> errors
+getSpaces ERROR -> errors
+getOccupancy ERROR -> errors
+merge ERROR -> errors
