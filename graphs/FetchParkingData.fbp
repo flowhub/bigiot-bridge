@@ -1,4 +1,5 @@
 INPORT=hold.IN:IN
+INPORT=token.IN:token
 OUTPORT=errors.OUT:error
 OUTPORT=merge.OUT:out
 
@@ -8,8 +9,12 @@ OUTPORT=merge.OUT:out
 hold(core/RepeatAsync) -> IN holdSpaces
 hold -> IN holdOccupancy
 
-holdSpaces -> (ParkingRequest) -> getSpaces(HttpGet) -> spaces(strings/ParseJson)
-holdOccupancy -> (ParkingRequest) -> getOccupancy(HttpGet) -> occupancy(strings/ParseJson)
+holdSpaces -> reqSpaces(ParkingRequest) -> getSpaces(HttpGet) -> spaces(strings/ParseJson)
+holdOccupancy -> reqOccupancy(ParkingRequest) -> getOccupancy(HttpGet) -> occupancy(strings/ParseJson)
+
+token(core/Repeat)
+token -> TOKEN reqSpaces
+token -> TOKEN reqOccupancy
 
 spaces OUT -> SPACES merge(MergeParkingData)
 occupancy OUT -> OCCUPANCY merge

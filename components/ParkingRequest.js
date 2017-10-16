@@ -2,11 +2,15 @@ const noflo = require('noflo');
 
 exports.getComponent = function () {
   const c = new noflo.Component();
-  c.description = 'Load a named schema';
+  c.description = 'Formulate an API request';
   c.icon = 'forward';
   c.inPorts.add('in', {
     datatype: 'string',
     description: 'Query path',
+  });
+  c.inPorts.add('token', {
+    datatype: 'string',
+    description: 'API token',
   });
   c.outPorts.add('out', {
     datatype: 'object',
@@ -16,12 +20,12 @@ exports.getComponent = function () {
   });
 
   c.process((input, output) => {
-    if (!input.hasData('in')) {
+    if (!input.hasData('in', 'token')) {
       return;
     }
     const path = input.getData('in');
+    const token = input.getData('token');
 
-    const token = process.env.BAHNPARK_API_TOKEN;
     const host = 'api.deutschebahn.com';
 
     const r = {
