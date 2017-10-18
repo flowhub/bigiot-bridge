@@ -1,3 +1,4 @@
+---
 name: "Parking data transformation"
 topic: "flowhub-bigiot-bridge/NormalizeParkingData"
 fixture:
@@ -8,15 +9,10 @@ fixture:
   OUTPORT=validate.ERRORS:validationerrors
   OUTPORT=errors.OUT:error
 
-  read(filesystem/ReadFile) -> occupancy(strings/ParseJson)
-  readSpaces(filesystem/ReadFile) -> spaces(strings/ParseJson)
-  '!' -> START (objects/CreateObject) -> mergeOccupancy(objects/SetPropertyValue) -> mergeSpaces(objects/SetPropertyValue)
-  'occupancy' -> PROPERTY mergeOccupancy
-  occupancy -> VALUE mergeOccupancy
-  'spaces' -> PROPERTY mergeSpaces
-  spaces -> VALUE mergeSpaces
+  read(filesystem/ReadFile) -> occupancy(strings/ParseJson) -> OCCUPANCY parkingData(MergeParkingData)
+  readSpaces(filesystem/ReadFile) -> spaces(strings/ParseJson) -> SPACES parkingData
 
-  mergeSpaces -> testee(NormalizeParkingData) -> validate(ValidateData)
+  parkingData -> testee(NormalizeParkingData) -> validate(ValidateData)
   'bigiot/ParkingSpaceOffering' -> schema(LoadSchema) -> SCHEMA validate
 
   read ERROR -> errors(core/Repeat)  
@@ -34,3 +30,48 @@ cases:
   expect:
     validationerrors:
       equals: []
+---
+name: "Fetching parking data"
+topic: "flowhub-bigiot-bridge/FetchParkingData"
+fixture:
+ type: 'fbp'
+ data: |
+  INPORT=token.IN:token
+  OUTPORT=validate.ERRORS:validationerrors
+  OUTPORT=fetchError.OUT:fetcherror
+  OUTPORT=errors.OUT:error
+
+  'BAHNPARK_API_TOKEN' -> KEY defaultToken(core/ReadEnv)
+  'readenv' -> PATTERN token(strings/Replace)
+  defaultToken -> REPLACEMENT token
+  token -> TOKEN fetch(FetchParkingData)
+  token -> IN fetch
+
+  fetch -> testee(NormalizeParkingData) -> validate(ValidateData)
+  'bigiot/ParkingSpaceOffering' -> schema(LoadSchema) -> SCHEMA validate
+
+  # Workaround for NoFlo not sending Error objects across wire
+  # https://github.com/noflo/noflo-runtime-base/issues/98
+  fetch ERROR -> fetchError(objects/GetObjectKey)
+  'message' -> KEY fetchError
+
+  defaultToken ERROR -> errors(core/Repeat)  
+  validate ERROR -> errors
+  schema ERROR -> errors
+cases:
+-
+  name: 'with valid API'
+  assertion: 'should return valid data'
+  inputs:
+    token: 'readenv'
+  expect:
+    validationerrors:
+      equals: []
+-
+  name: 'with invalid API token'
+  assertion: 'should error during fetch'
+  inputs:
+    token: 'invalid-api-token'
+  expect:
+    fetcherror:
+      contains: 'status code:'

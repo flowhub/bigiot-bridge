@@ -1,0 +1,11 @@
+'!!!' -> fetch(FetchParkingData)
+getToken(core/ReadEnv) -> TOKEN fetch
+'BAHNPARK_API_TOKEN' -> KEY getToken
+
+# TODO: normalize, validate and persist
+
+fetch OUT -> out(core/Output)
+
+# Error handling
+fetch ERROR -> errors(core/Output)
+getToken ERROR -> errors

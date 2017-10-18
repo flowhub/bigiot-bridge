@@ -1,0 +1,12 @@
+INPORT=mergeOccupancy.VALUE:occupancy
+INPORT=mergeSpaces.VALUE:spaces
+OUTPORT=errors.OUT:error
+OUTPORT=mergeSpaces.OUT:out
+
+'!' -> START (objects/CreateObject) -> mergeOccupancy(objects/SetPropertyValue) -> mergeSpaces(objects/SetPropertyValue)
+'occupancy' -> PROPERTY mergeOccupancy
+occupancy -> VALUE mergeOccupancy
+'spaces' -> PROPERTY mergeSpaces
+spaces -> VALUE mergeSpaces
+
+errors(core/Repeat)
