@@ -62,7 +62,7 @@ exports.getComponent = function () {
       offering.inputData.push(input.getData(['inputdata', idx]));
     });
     outputsWithData.forEach((idx) => {
-      offering.inputData.push(input.getData(['outputdata', idx]));
+      offering.outputData.push(input.getData(['outputdata', idx]));
     });
     output.sendDone(offering);
   });
