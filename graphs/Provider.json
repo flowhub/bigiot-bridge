@@ -1,0 +1,572 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "Provider",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Register and serve offerings on the BIG IoT marketplace",
+        "icon": "shopping-cart"
+    },
+    "inports": {
+        "config": {
+            "process": "Config",
+            "port": "in",
+            "metadata": {
+                "x": -144,
+                "y": -108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "offering": {
+            "process": "ConfigureOffering",
+            "port": "offering",
+            "metadata": {
+                "x": -144,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "response": {
+            "process": "RespondWithData",
+            "port": "data",
+            "metadata": {
+                "x": -144,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "error": {
+            "process": "Errors",
+            "port": "out",
+            "metadata": {
+                "x": 2088,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "request": {
+            "process": "RequestData",
+            "port": "payload",
+            "metadata": {
+                "x": 2088,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "app": {
+            "process": "App",
+            "port": "out",
+            "metadata": {
+                "x": 2088,
+                "y": -288,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [
+        {
+            "name": "HTTP Serving",
+            "nodes": [
+                "OfferingRouter",
+                "flowhub-bigiot-bridge/CheckAuthorization_9bbqa",
+                "RequestData",
+                "RespondWithData",
+                "flowhub-bigiot-bridge/ValidateRequest_an6hf",
+                "xpress/Server_melwe"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Offering registration",
+            "nodes": [
+                "ActivateOfferings",
+                "ReActivate",
+                "ConfigureOffering",
+                "flowhub-bigiot-bridge/RegisterOffering_op3in"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "xpress/Server_melwe": {
+            "component": "xpress/Server",
+            "metadata": {
+                "label": "Server",
+                "x": 864,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Errors": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Errors",
+                "x": 1476,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ReActivate": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "ReActivate",
+                "x": 360,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Config": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Config",
+                "x": -36,
+                "y": -108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/RegisterOffering_op3in": {
+            "component": "flowhub-bigiot-bridge/RegisterOffering",
+            "metadata": {
+                "label": "RegisterOffering",
+                "x": 540,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/CheckAuthorization_9bbqa": {
+            "component": "flowhub-bigiot-bridge/CheckAuthorization",
+            "metadata": {
+                "label": "CheckAuthorization",
+                "x": 1368,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetPort": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetPort",
+                "x": 360,
+                "y": -216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetSecret": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetSecret",
+                "x": 1188,
+                "y": -216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ActivateOfferings": {
+            "component": "core/Kick",
+            "metadata": {
+                "label": "ActivateOfferings",
+                "x": 144,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ConfigureOffering": {
+            "component": "flowhub-bigiot-bridge/ConfigureOffering",
+            "metadata": {
+                "label": "ConfigureOffering",
+                "x": 360,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "OfferingRouter": {
+            "component": "flowhub-bigiot-bridge/OfferingRouter",
+            "metadata": {
+                "label": "OfferingRouter",
+                "x": 1188,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/ValidateRequest_an6hf": {
+            "component": "flowhub-bigiot-bridge/ValidateRequest",
+            "metadata": {
+                "label": "ValidateRequest",
+                "x": 1548,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "RespondWithData": {
+            "component": "flowhub-bigiot-bridge/RespondWithData",
+            "metadata": {
+                "label": "RespondWithData",
+                "x": 1908,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "RequestData": {
+            "component": "flowhub-bigiot-bridge/RequestData",
+            "metadata": {
+                "label": "RequestData",
+                "x": 1728,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "App": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "App",
+                "x": 1728,
+                "y": -288,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "xpress/Server_melwe",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ReActivate",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/RegisterOffering_op3in",
+                "port": "activate"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/RegisterOffering_op3in",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "Config",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetPort",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "GetPort",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "xpress/Server_melwe",
+                "port": "port"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "GetPort",
+                "port": "object"
+            },
+            "tgt": {
+                "process": "GetSecret",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "GetSecret",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CheckAuthorization_9bbqa",
+                "port": "secret"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "xpress/Server_melwe",
+                "port": "app"
+            },
+            "tgt": {
+                "process": "ActivateOfferings",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "ActivateOfferings",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ReActivate",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "ActivateOfferings",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/RegisterOffering_op3in",
+                "port": "activate"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "Config",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ConfigureOffering",
+                "port": "config"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ConfigureOffering",
+                "port": "offering"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/RegisterOffering_op3in",
+                "port": "offering"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "OfferingRouter",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "xpress/Server_melwe",
+                "port": "app"
+            },
+            "tgt": {
+                "process": "OfferingRouter",
+                "port": "app"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "ConfigureOffering",
+                "port": "route"
+            },
+            "tgt": {
+                "process": "OfferingRouter",
+                "port": "offering"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "OfferingRouter",
+                "port": "req"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CheckAuthorization_9bbqa",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CheckAuthorization_9bbqa",
+                "port": "req"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/ValidateRequest_an6hf",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/ValidateRequest_an6hf",
+                "port": "req"
+            },
+            "tgt": {
+                "process": "RequestData",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "RequestData",
+                "port": "req"
+            },
+            "tgt": {
+                "process": "RespondWithData",
+                "port": "req"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "GetPort",
+                "port": "object"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/RegisterOffering_op3in",
+                "port": "config"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "xpress/Server_melwe",
+                "port": "app"
+            },
+            "tgt": {
+                "process": "App",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "data": 30000,
+            "tgt": {
+                "process": "ReActivate",
+                "port": "interval"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "GetPort",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": "port",
+            "tgt": {
+                "process": "GetPort",
+                "port": "key"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "GetSecret",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": "provider_secret",
+            "tgt": {
+                "process": "GetSecret",
+                "port": "key"
+            }
+        },
+        {
+            "data": "true",
+            "tgt": {
+                "process": "ActivateOfferings",
+                "port": "data"
+            }
+        }
+    ]
+}
