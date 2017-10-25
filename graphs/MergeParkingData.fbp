@@ -3,6 +3,8 @@ INPORT=mergeSpaces.VALUE:spaces
 OUTPORT=errors.OUT:error
 OUTPORT=mergeSpaces.OUT:out
 
+# @platform noflo-nodejs
+
 '!' -> START (objects/CreateObject) -> mergeOccupancy(objects/SetPropertyValue) -> mergeSpaces(objects/SetPropertyValue)
 'occupancy' -> PROPERTY mergeOccupancy
 occupancy -> VALUE mergeOccupancy
