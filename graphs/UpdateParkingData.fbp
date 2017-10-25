@@ -2,7 +2,7 @@
 getToken(core/ReadEnv) -> TOKEN fetch
 'BAHNPARK_API_TOKEN' -> KEY getToken
 
-# @platform noflo-nodejs
+# @runtime noflo-nodejs
 
 # TODO: normalize, validate and persist
 
