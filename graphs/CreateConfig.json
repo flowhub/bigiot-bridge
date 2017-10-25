@@ -1,0 +1,399 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "CreateConfig",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Create provider configuration from environment variables",
+        "icon": "usd"
+    },
+    "inports": {
+        "hostname": {
+            "process": "Hostname",
+            "port": "in",
+            "metadata": {
+                "x": -1008,
+                "y": -3096,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "SetProviderSecret",
+            "port": "out",
+            "metadata": {
+                "x": 252,
+                "y": -3276,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "Errors",
+            "port": "out",
+            "metadata": {
+                "x": 252,
+                "y": -3132,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "ProviderSecret": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "ProviderSecret",
+                "x": -144,
+                "y": -3132,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ProviderId": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "ProviderId",
+                "x": -360,
+                "y": -3420,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Hostname": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Hostname",
+                "x": -864,
+                "y": -3096,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "CreateConfig": {
+            "component": "objects/CreateObject",
+            "metadata": {
+                "label": "CreateConfig",
+                "x": -684,
+                "y": -2988,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetProviderId": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetProviderId",
+                "x": -144,
+                "y": -3276,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Port": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "Port",
+                "x": -864,
+                "y": -3276,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Kick_giafk": {
+            "component": "core/Kick",
+            "metadata": {
+                "label": "Kick",
+                "x": -684,
+                "y": -3204,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetPort": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetPort",
+                "x": -360,
+                "y": -3276,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetHostname": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetHostname",
+                "x": -504,
+                "y": -3096,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ParsePort": {
+            "component": "strings/ParseInt",
+            "metadata": {
+                "label": "ParsePort",
+                "x": -504,
+                "y": -3276,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetProviderSecret": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetProviderSecret",
+                "x": 108,
+                "y": -3276,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Errors": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Errors",
+                "x": 108,
+                "y": -3132,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "ProviderId",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetProviderId",
+                "port": "value"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "Hostname",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "CreateConfig",
+                "port": "start"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "CreateConfig",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetHostname",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "Hostname",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetHostname",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "Port",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Kick_giafk",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "Port",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ParsePort",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "core/Kick_giafk",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ParsePort",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ParsePort",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetPort",
+                "port": "value"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "SetHostname",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetPort",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "SetPort",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetProviderId",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ProviderSecret",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetProviderSecret",
+                "port": "value"
+            },
+            "metadata": {
+                "secure": true
+            }
+        },
+        {
+            "src": {
+                "process": "SetProviderId",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetProviderSecret",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ProviderSecret",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ProviderId",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "data": "provider_id",
+            "tgt": {
+                "process": "SetProviderId",
+                "port": "property"
+            }
+        },
+        {
+            "data": "PORT",
+            "tgt": {
+                "process": "Port",
+                "port": "key"
+            }
+        },
+        {
+            "data": "5000",
+            "tgt": {
+                "process": "core/Kick_giafk",
+                "port": "data"
+            }
+        },
+        {
+            "data": "hostname",
+            "tgt": {
+                "process": "SetHostname",
+                "port": "property"
+            }
+        },
+        {
+            "data": 10,
+            "tgt": {
+                "process": "ParsePort",
+                "port": "base"
+            }
+        },
+        {
+            "data": "port",
+            "tgt": {
+                "process": "SetPort",
+                "port": "property"
+            }
+        },
+        {
+            "data": "provider_secret",
+            "tgt": {
+                "process": "SetProviderSecret",
+                "port": "property"
+            }
+        },
+        {
+            "data": "BIGIOT_PROVIDER_SECRET",
+            "tgt": {
+                "process": "ProviderSecret",
+                "port": "key"
+            }
+        },
+        {
+            "data": "BIGIOT_PROVIDER_ID",
+            "tgt": {
+                "process": "ProviderId",
+                "port": "key"
+            }
+        }
+    ]
+}

@@ -6,6 +6,8 @@
   "dependencies": {
     "bigiot-js": "^0.2.0",
     "fbp": "^1.5.0",
+    "isomorphic-fetch": "^2.2.1",
+    "metar": "^1.0.0",
     "noflo": "^0.8.5",
     "noflo-core": "^0.4.0",
     "noflo-filesystem": "^1.2.1",
@@ -21,7 +23,6 @@
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
     "fbp-spec": "^0.2.1",
-    "isomorphic-fetch": "^2.2.1",
     "mocha": "^4.0.1"
   },
   "scripts": {
