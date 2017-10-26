@@ -4,7 +4,7 @@
   "description": "Offer data in BigIot marketplace using Flowhub IoT platform",
   "main": "index.js",
   "dependencies": {
-    "bigiot-js": "^0.1.0",
+    "bigiot-js": "^0.2.0",
     "fbp": "^1.5.0",
     "noflo": "^0.8.5",
     "noflo-core": "^0.4.0",
