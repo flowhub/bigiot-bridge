@@ -33,7 +33,7 @@ exports.getComponent = function () {
     fetch(url)
       .then((response) => {
         if (response.status !== 200) {
-          throw new Error(`Failed with ${response.statusText}`);
+          throw new Error(`METAR fetch failed with ${response.statusText}`);
         }
         return response.text();
       })
