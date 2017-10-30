@@ -53,7 +53,7 @@ exports.getComponent = function () {
     const name = input.getData('in');
     const found = schemas[name];
     if (!found) {
-      output.error(new Error(`Could not find schema named ${name}`));
+      output.done(new Error(`Could not find schema named ${name}`));
       return;
     }
     output.sendDone({ out: found });

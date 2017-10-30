@@ -52,24 +52,24 @@ exports.getComponent = function () {
     const indata = input.getData('in');
 
     if (!indata.occupancy) {
-      output.error(new Error('BahnPark data missing .occupancy'));
+      output.done(new Error('BahnPark data missing .occupancy'));
       return;
     }
     if (!indata.occupancy.allocations) {
-      output.error(new Error('BahnPark data missing .occupancy.allocations'));
+      output.done(new Error('BahnPark data missing .occupancy.allocations'));
       return;
     }
 
     if (!indata.spaces) {
-      output.error(new Error('BahnPark data missing .spaces'));
+      output.done(new Error('BahnPark data missing .spaces'));
       return;
     }
     if (!indata.spaces.items) {
-      output.error(new Error('BahnPark data missing .spaces.items'));
+      output.done(new Error('BahnPark data missing .spaces.items'));
       return;
     }
     if (indata.spaces.count !== indata.spaces.totalCount) {
-      output.error(new Error('BahnPark data does not have data for all .spaces'));
+      output.done(new Error('BahnPark data does not have data for all .spaces'));
       return;
     }
 
