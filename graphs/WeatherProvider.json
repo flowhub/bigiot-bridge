@@ -64,7 +64,7 @@
             }
         },
         "flowhub-bigiot-bridge/GetMetar_tc4u5": {
-            "component": "flowhub-bigiot-bridge/GetMetar",
+            "component": "flowhub-bigiot-bridge/GetMetarWeather",
             "metadata": {
                 "label": "GetMetar",
                 "x": 504,
