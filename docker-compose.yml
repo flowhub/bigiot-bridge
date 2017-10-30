@@ -6,3 +6,4 @@ services:
     container_name: flowhub-bigiot-web
     ports:
       - '127.0.0.1:5000:5000'
+    env_file: '.env'
