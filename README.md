@@ -38,10 +38,16 @@ Start the service
 ### Checking that it works
 The new offering(s) should now be available under [My Offerings](https://market.big-iot.org/myOfferings)
 
-Re
-    curl http://localhost:5000/txl
+To request data from the API without going through the marketplace, you will need an authentication token.
+Create it using:
 
-TODO: document how to sign and set request auth token
+```
+node -e "console.log(require('jsonwebtoken').sign({}, Buffer.from(process.env.BIGIOT_PROVIDER_SECRET, 'base64'), {expiresIn:'1h'}))"
+```
+
+```
+curl -H 'Authentication: Bearer $TOKEN' http://localhost:5000/txl
+```
 
 ### Configuring and adding new offerings
 TODO: coming soon
