@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 const noflo = require('noflo');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 // Polyfill for fetch()
 require('isomorphic-fetch');
 
@@ -89,7 +90,14 @@ describe('Provider graph', () => {
       });
     }).timeout(8000);
     it('should respond to a request', () => {
-      return fetch('http://localhost:5000/foo?temperature=true')
+      const token = jwt.sign({}, Buffer.from(process.env.BIGIOT_PROVIDER_SECRET, 'base64'), {
+        expiresIn: '1h',
+      });
+      return fetch('http://localhost:5000/foo?temperature=true', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
         .then((response) => {
           if (response.status !== 200) {
             throw new Error(`Provider failed with ${response.status}: ${response.statusText}`);
