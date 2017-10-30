@@ -9,7 +9,8 @@ describe('Provider graph', () => {
     let loader = null;
     let graph = null;
     let nw = null;
-    before((done) => {
+    before(function (done) {
+      this.timeout(8000);
       graph = new noflo.Graph('Test');
       graph.addNode('Provider', 'flowhub-bigiot-bridge/Provider');
       graph.addNode('Invert', 'test/Invert');
@@ -86,7 +87,7 @@ describe('Provider graph', () => {
           }
         });
       });
-    }).timeout(4000);
+    }).timeout(8000);
     it('should respond to a request', () => {
       return fetch('http://localhost:5000/foo?temperature=true')
         .then((response) => {
