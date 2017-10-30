@@ -53,9 +53,10 @@ fixture:
   # Workaround for NoFlo not sending Error objects across wire
   # https://github.com/noflo/noflo-runtime-base/issues/98
   fetch ERROR -> fetchError(objects/GetObjectKey)
-  'message' -> KEY fetchError
+  fetch ERROR -> sendFetchKey
+  'message' -> STRING sendFetchKey(strings/SendString) -> KEY fetchError
 
-  defaultToken ERROR -> errors(core/Repeat)  
+  defaultToken ERROR -> errors(core/Repeat)
   validate ERROR -> errors
   schema ERROR -> errors
 cases:

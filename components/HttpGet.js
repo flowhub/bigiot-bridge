@@ -47,7 +47,7 @@ exports.getComponent = function () {
     getRequest(req).then((body) => {
       output.sendDone({ out: body });
     }).catch((err) => {
-      output.error(err);
+      output.done(err);
     });
   });
 

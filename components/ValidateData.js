@@ -32,13 +32,13 @@ exports.getComponent = function () {
     const result = tv4.validateMultiple(data, schema);
 
     if (result.missing.length > 0) {
-      output.error(new Error(`Missing schema references: ${result.missing}`));
+      output.done(new Error(`Missing schema references: ${result.missing}`));
       return;
     }
 
     // Sanity check that errors always set if not valid
     if (!result.valid !== (result.errors.length > 0)) {
-      output.error(new Error('ValidateData post-condition failed: isInvalid == hasErrors'));
+      output.done(new Error('ValidateData post-condition failed: isInvalid == hasErrors'));
       return;
     }
 

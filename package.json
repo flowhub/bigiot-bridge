@@ -6,24 +6,32 @@
   "dependencies": {
     "bigiot-js": "^0.2.0",
     "fbp": "^1.5.0",
+    "isomorphic-fetch": "^2.2.1",
+    "metar": "^1.0.0",
     "noflo": "^0.8.5",
     "noflo-core": "^0.4.0",
     "noflo-filesystem": "^1.2.1",
     "noflo-nodejs": "^0.8.1",
     "noflo-objects": "^0.3.0",
     "noflo-strings": "^0.3.1",
-    "tv4": "^1.3.0"
+    "noflo-xpress": "^0.4.1",
+    "tv4": "^1.3.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^4.7.2",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
-    "fbp-spec": "^0.2.1"
+    "fbp-spec": "^0.2.1",
+    "jsonwebtoken": "^8.1.0",
+    "mocha": "^4.0.1"
   },
   "scripts": {
     "spec": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --register=false --secret test' spec/",
+    "mocha": "mocha --reporter spec spec/*.js",
     "lint": "eslint components/*.js",
-    "test": "npm run lint && npm run spec"
+    "test": "npm run lint && npm run spec && npm run mocha",
+    "dev": "./node_modules/.bin/noflo-nodejs --uuid 4b9b4b4f-ec6b-47c2-b9ce-0febb64af475 --register false --secret big-iot"
   },
   "repository": {
     "type": "git",

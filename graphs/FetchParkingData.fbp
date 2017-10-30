@@ -3,6 +3,8 @@ INPORT=token.IN:token
 OUTPORT=errors.OUT:error
 OUTPORT=merge.OUT:out
 
+# @runtime noflo-nodejs
+
 '/bahnpark/v1/spaces?limit=1000' -> STRING holdSpaces(strings/SendString)
 '/bahnpark/v1/spaces/occupancies?limit=1000' -> STRING holdOccupancy(strings/SendString)
 
