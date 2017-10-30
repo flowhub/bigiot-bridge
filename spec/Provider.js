@@ -92,7 +92,7 @@ describe('Provider graph', () => {
       return fetch('http://localhost:5000/foo?temperature=true')
         .then((response) => {
           if (response.status !== 200) {
-            throw new Error(`Failed with ${response.statusText}`);
+            throw new Error(`Provider failed with ${response.status}: ${response.statusText}`);
           }
           return response.json();
         })
