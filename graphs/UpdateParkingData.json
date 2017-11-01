@@ -1,0 +1,174 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "UpdateParkingData",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Fetch and store parking information",
+        "icon": "car"
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "GetBahnToken": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "x": 36,
+                "y": 144,
+                "width": 72,
+                "height": 72,
+                "label": "GetBahnToken"
+            }
+        },
+        "errors": {
+            "component": "core/Output",
+            "metadata": {
+                "x": 720,
+                "y": 144,
+                "width": 72,
+                "height": 72,
+                "label": "errors"
+            }
+        },
+        "GetRedisUrl": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "GetRedisUrl",
+                "x": 36,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/FetchParkingData_j5qiq": {
+            "component": "flowhub-bigiot-bridge/FetchParkingData",
+            "metadata": {
+                "label": "FetchParkingData",
+                "x": 360,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/PersistData_9m8qm": {
+            "component": "flowhub-bigiot-bridge/PersistData",
+            "metadata": {
+                "label": "PersistData",
+                "x": 540,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "GetBahnToken",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "GetRedisUrl",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "GetBahnToken",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "port": "token"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/PersistData_9m8qm",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/PersistData_9m8qm",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "GetRedisUrl",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/PersistData_9m8qm",
+                "port": "redisurl"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "BAHNPARK_API_TOKEN",
+            "tgt": {
+                "process": "GetBahnToken",
+                "port": "key"
+            }
+        },
+        {
+            "data": "REDIS_URL",
+            "tgt": {
+                "process": "GetRedisUrl",
+                "port": "key"
+            }
+        },
+        {
+            "data": "!!",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "port": "in"
+            }
+        }
+    ]
+}
