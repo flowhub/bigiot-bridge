@@ -10,7 +10,7 @@ before_script:
 - npm run tag
 - npm run registry-login
 after_success:
-- npm run deploy
+- test -n "$TRAVIS_TAG" && npm run deploy
 env:
   matrix:
   - NOFLO_FATAL_DEPRECATED=true
