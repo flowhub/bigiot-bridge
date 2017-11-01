@@ -24,7 +24,7 @@ Pre-alpha, not useful yet
 
 Create default settings files
 ```
-echo -e 'PORT=5000\nBIGIOT_PROVIDER_ID=\nBIGIOT_PROVIDER_SECRET=\n' > .env
+cp .env-default .env
 ```
 
 Edit `.env` to contain your provider id/secrets.
