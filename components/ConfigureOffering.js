@@ -7,10 +7,21 @@ function setupEndPoints(config, endpoint) {
     endpointType: endpoint.endpointType || 'HTTP_GET',
     accessInterfaceType: endpoint.accessInterfaceType || 'BIGIOT_LIB',
   };
-  configured.uri = url.format({
+  const uriConfig = {
     protocol: 'http',
     hostname: config.hostname,
     port: config.port,
+  };
+  if (config.hostname.indexOf('://') !== -1) {
+    const parsed = url.parse(config.hostname);
+    uriConfig.protocol = parsed.protocol;
+    uriConfig.hostname = parsed.hostname;
+    uriConfig.port = parsed.port;
+  }
+  configured.uri = url.format({
+    protocol: uriConfig.protocol,
+    hostname: uriConfig.hostname,
+    port: uriConfig.port,
     pathname: endpoint.uri,
   });
   return configured;
