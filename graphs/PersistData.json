@@ -35,8 +35,8 @@
             "process": "flow/All_x5jvr",
             "port": "out",
             "metadata": {
-                "x": 1656,
-                "y": 180,
+                "x": 1980,
+                "y": 108,
                 "width": 72,
                 "height": 72
             }
@@ -136,8 +136,8 @@
             "component": "adapters/PacketsToArray",
             "metadata": {
                 "label": "CollectSpaces",
-                "x": 1368,
-                "y": 72,
+                "x": 1620,
+                "y": 108,
                 "width": 72,
                 "height": 72
             }
@@ -197,7 +197,7 @@
             "metadata": {
                 "label": "EachAllocation",
                 "x": 792,
-                "y": 288,
+                "y": 324,
                 "width": 72,
                 "height": 72
             }
@@ -207,7 +207,7 @@
             "metadata": {
                 "label": "GetAllocationInfo",
                 "x": 936,
-                "y": 288,
+                "y": 324,
                 "width": 72,
                 "height": 72
             }
@@ -216,7 +216,7 @@
             "component": "adapters/PacketsToArray",
             "metadata": {
                 "label": "PacketsToArray",
-                "x": 1368,
+                "x": 1620,
                 "y": 288,
                 "width": 72,
                 "height": 72
@@ -226,8 +226,8 @@
             "component": "redis/Set",
             "metadata": {
                 "label": "SaveAllocation",
-                "x": 1188,
-                "y": 324,
+                "x": 1116,
+                "y": 432,
                 "width": 72,
                 "height": 72
             }
@@ -236,8 +236,8 @@
             "component": "redis/Expire",
             "metadata": {
                 "label": "ExpireAllocation",
-                "x": 1224,
-                "y": 432,
+                "x": 1440,
+                "y": 324,
                 "width": 72,
                 "height": 72
             }
@@ -246,7 +246,7 @@
             "component": "strings/SendString",
             "metadata": {
                 "label": "SendExpiry",
-                "x": 1116,
+                "x": 1296,
                 "y": 432,
                 "width": 72,
                 "height": 72
@@ -256,8 +256,8 @@
             "component": "flow/All",
             "metadata": {
                 "label": "All",
-                "x": 1512,
-                "y": 180,
+                "x": 1836,
+                "y": 108,
                 "width": 72,
                 "height": 72
             }
@@ -273,7 +273,9 @@
                 "process": "GetSpacesItems",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -284,7 +286,9 @@
                 "process": "EachSpace",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -309,7 +313,7 @@
                 "port": "in"
             },
             "metadata": {
-                "route": null
+                "route": 6
             }
         },
         {
@@ -321,7 +325,9 @@
                 "process": "SaveSpace",
                 "port": "key"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 9
+            }
         },
         {
             "src": {
@@ -333,7 +339,7 @@
                 "port": "member"
             },
             "metadata": {
-                "route": 0
+                "route": 6
             }
         },
         {
@@ -345,7 +351,9 @@
                 "process": "SaveSpace",
                 "port": "latitude"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -356,7 +364,9 @@
                 "process": "SaveSpace",
                 "port": "longitude"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -393,7 +403,9 @@
                 "process": "GetSpaceInfo",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -404,7 +416,9 @@
                 "process": "CollectSpaces",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
@@ -415,7 +429,9 @@
                 "process": "GetOccupancies",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 3
+            }
         },
         {
             "src": {
@@ -426,7 +442,9 @@
                 "process": "GetAllocations",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 3
+            }
         },
         {
             "src": {
@@ -437,7 +455,9 @@
                 "process": "EachAllocation",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 3
+            }
         },
         {
             "src": {
@@ -459,7 +479,9 @@
                 "process": "SaveAllocation",
                 "port": "key"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 6
+            }
         },
         {
             "src": {
@@ -470,7 +492,9 @@
                 "process": "SaveAllocation",
                 "port": "value"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -482,7 +506,7 @@
                 "port": "key"
             },
             "metadata": {
-                "route": 0
+                "route": 6
             }
         },
         {
@@ -494,7 +518,9 @@
                 "process": "SendExpiry",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 6
+            }
         },
         {
             "src": {
@@ -505,7 +531,9 @@
                 "process": "ExpireAllocation",
                 "port": "expire"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 9
+            }
         },
         {
             "src": {
@@ -516,7 +544,9 @@
                 "process": "adapters/PacketsToArray_idnjj",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
@@ -553,7 +583,9 @@
                 "process": "flow/All_x5jvr",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
@@ -564,7 +596,9 @@
                 "process": "flow/All_x5jvr",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
