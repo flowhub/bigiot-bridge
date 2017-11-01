@@ -1,0 +1,432 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "ParkingProvider",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "Config": {
+            "component": "flowhub-bigiot-bridge/CreateConfig",
+            "metadata": {
+                "label": "Config",
+                "x": 432,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Provider": {
+            "component": "flowhub-bigiot-bridge/Provider",
+            "metadata": {
+                "label": "Provider",
+                "x": 576,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/CreateOffering_fjxkp": {
+            "component": "flowhub-bigiot-bridge/CreateOffering",
+            "metadata": {
+                "label": "CreateOffering",
+                "x": 432,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "NumberOfVacantSpaces": {
+            "component": "flowhub-bigiot-bridge/CreateDatatype",
+            "metadata": {
+                "label": "NumberOfVacantSpaces",
+                "x": 180,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Radius": {
+            "component": "flowhub-bigiot-bridge/CreateDatatype",
+            "metadata": {
+                "label": "Radius",
+                "x": 180,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Latitude": {
+            "component": "flowhub-bigiot-bridge/CreateDatatype",
+            "metadata": {
+                "label": "Latitude",
+                "x": 180,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Longitude": {
+            "component": "flowhub-bigiot-bridge/CreateDatatype",
+            "metadata": {
+                "label": "Longitude",
+                "x": 180,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Errors": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Errors",
+                "x": 828,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "RedisUrl": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "RedisUrl",
+                "x": 180,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ConnectRedis": {
+            "component": "redis/Connect",
+            "metadata": {
+                "label": "ConnectRedis",
+                "x": 432,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/GetParkingData_d15kz": {
+            "component": "flowhub-bigiot-bridge/GetParkingData",
+            "metadata": {
+                "label": "GetParkingData",
+                "x": 576,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "Config",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "config"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "offering"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "Latitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "inputdata"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "Longitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "inputdata"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "Radius",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "inputdata"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "Provider",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "RedisUrl",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "Latitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "outputdata"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "Longitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "outputdata"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "NumberOfVacantSpaces",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "outputdata"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "RedisUrl",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ConnectRedis",
+                "port": "url"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ConnectRedis",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConnectRedis",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "port": "redis"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Provider",
+                "port": "request"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "response"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "response"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "data": "localhost",
+            "tgt": {
+                "process": "Config",
+                "port": "hostname"
+            }
+        },
+        {
+            "data": "http://schema.org/parkingSiteManagement",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "rdfuri"
+            }
+        },
+        {
+            "data": "Berlin",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "extent"
+            }
+        },
+        {
+            "data": "/bahnparking",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "uri"
+            }
+        },
+        {
+            "data": "Bahn Parking Berlin",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "port": "name"
+            }
+        },
+        {
+            "data": "http://schema.org/parkingNumberOfVacantSpaces ",
+            "tgt": {
+                "process": "NumberOfVacantSpaces",
+                "port": "rdfuri"
+            }
+        },
+        {
+            "data": "number",
+            "tgt": {
+                "process": "NumberOfVacantSpaces",
+                "port": "name"
+            }
+        },
+        {
+            "data": "radius",
+            "tgt": {
+                "process": "Radius",
+                "port": "name"
+            }
+        },
+        {
+            "data": "http://schema.org/geoRadius",
+            "tgt": {
+                "process": "Radius",
+                "port": "rdfuri"
+            }
+        },
+        {
+            "data": "http://schema.org/longitude",
+            "tgt": {
+                "process": "Longitude",
+                "port": "rdfuri"
+            }
+        },
+        {
+            "data": "longitude",
+            "tgt": {
+                "process": "Longitude",
+                "port": "name"
+            }
+        },
+        {
+            "data": "latitude",
+            "tgt": {
+                "process": "Latitude",
+                "port": "name"
+            }
+        },
+        {
+            "data": "http://schema.org/latitude",
+            "tgt": {
+                "process": "Latitude",
+                "port": "rdfuri"
+            }
+        },
+        {
+            "data": "REDIS_URL",
+            "tgt": {
+                "process": "RedisUrl",
+                "port": "key"
+            }
+        }
+    ]
+}

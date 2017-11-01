@@ -1,0 +1,335 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "GetParkingData",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Read requested parking data from Redis",
+        "icon": "database"
+    },
+    "inports": {
+        "in": {
+            "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+            "port": "in",
+            "metadata": {
+                "x": 36,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis": {
+            "process": "core/Split_qgsjt",
+            "port": "in",
+            "metadata": {
+                "x": 36,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "flow/All_h40un",
+            "port": "out",
+            "metadata": {
+                "x": 1224,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "flow/All_h40un",
+            "port": "error",
+            "metadata": {
+                "x": 1224,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "redis/GeoRadius_px0sb": {
+            "component": "redis/GeoRadius",
+            "metadata": {
+                "label": "GeoRadius",
+                "x": 432,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendUnknown": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendUnknown",
+                "x": 828,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis/Get_gol68": {
+            "component": "redis/Get",
+            "metadata": {
+                "label": "Get",
+                "x": 720,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flow/All_h40un": {
+            "component": "flow/All",
+            "metadata": {
+                "label": "All",
+                "x": 1080,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "adapters/ObjectToPackets_5dsg0": {
+            "component": "adapters/ObjectToPackets",
+            "metadata": {
+                "label": "ObjectToPackets",
+                "x": 576,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "adapters/PacketsToArray_lgbzj": {
+            "component": "adapters/PacketsToArray",
+            "metadata": {
+                "label": "PacketsToArray",
+                "x": 972,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19": {
+            "component": "flowhub-bigiot-bridge/HandlePositionedRequest",
+            "metadata": {
+                "label": "HandlePositionedRequest",
+                "x": 180,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendKey": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendKey",
+                "x": 324,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_qgsjt": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Split",
+                "x": 180,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "redis/Get_gol68",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "SendUnknown",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "flow/All_h40un",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/Get_gol68",
+                "port": "key"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "SendUnknown",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "adapters/PacketsToArray_lgbzj",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "adapters/PacketsToArray_lgbzj",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flow/All_h40un",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "latitude"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "longitude"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "longitude"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "radius"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "radius"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "SendKey",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "key"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "SendKey",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Get_gol68",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "adapters/PacketsToArray_lgbzj",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Split_qgsjt",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_qgsjt",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/Get_gol68",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "data": "m",
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "unit"
+            }
+        },
+        {
+            "data": "0",
+            "tgt": {
+                "process": "SendUnknown",
+                "port": "string"
+            }
+        },
+        {
+            "data": "parkspaces",
+            "tgt": {
+                "process": "SendKey",
+                "port": "string"
+            }
+        }
+    ]
+}
