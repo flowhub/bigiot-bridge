@@ -2,6 +2,8 @@ language: node_js
 node_js:
 - '8'
 dist: trusty
+services:
+  - docker
 before_script:
 - cp .env-default .env
 - npm run build
