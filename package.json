@@ -10,7 +10,7 @@
     "metar": "^1.0.0",
     "noflo": "^1.0.0",
     "noflo-core": "^0.5.0",
-    "noflo-filesystem": "^1.2.1",
+    "noflo-filesystem": "^2.0.0",
     "noflo-nodejs": "^0.8.1",
     "noflo-objects": "^0.3.0",
     "noflo-strings": "^0.3.1",
