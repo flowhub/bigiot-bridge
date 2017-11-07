@@ -42,21 +42,31 @@
                 "height": 72
             }
         },
-        "flowhub-bigiot-bridge/FetchParkingData_j5qiq": {
+        "Fetch": {
             "component": "flowhub-bigiot-bridge/FetchParkingData",
             "metadata": {
-                "label": "FetchParkingData",
-                "x": 360,
+                "label": "Fetch",
+                "x": 252,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Save": {
+            "component": "flowhub-bigiot-bridge/PersistData",
+            "metadata": {
+                "label": "Save",
+                "x": 540,
                 "y": -36,
                 "width": 72,
                 "height": 72
             }
         },
-        "flowhub-bigiot-bridge/PersistData_9m8qm": {
-            "component": "flowhub-bigiot-bridge/PersistData",
+        "Result": {
+            "component": "core/Output",
             "metadata": {
-                "label": "PersistData",
-                "x": 540,
+                "label": "Result",
+                "x": 720,
                 "y": -36,
                 "width": 72,
                 "height": 72
@@ -92,7 +102,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "process": "Fetch",
                 "port": "error"
             },
             "tgt": {
@@ -109,25 +119,29 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "process": "Fetch",
                 "port": "token"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 2
+            }
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "process": "Fetch",
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/PersistData_9m8qm",
+                "process": "Save",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/PersistData_9m8qm",
+                "process": "Save",
                 "port": "error"
             },
             "tgt": {
@@ -144,10 +158,25 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/PersistData_9m8qm",
+                "process": "Save",
                 "port": "redisurl"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Save",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Result",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "data": "BAHNPARK_API_TOKEN",
@@ -166,7 +195,7 @@
         {
             "data": "!!",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/FetchParkingData_j5qiq",
+                "process": "Fetch",
                 "port": "in"
             }
         }
