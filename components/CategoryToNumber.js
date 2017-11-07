@@ -29,6 +29,9 @@ exports.getComponent = function () {
       case '4':
         number = 50;
         break;
+      default:
+        number = 0;
+        break;
     }
     output.sendDone({
       out: number,
