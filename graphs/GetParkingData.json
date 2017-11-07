@@ -66,20 +66,6 @@
             }
         },
         {
-            "name": "Get status for a parking location",
-            "nodes": [
-                "CreateResponse",
-                "GetParkingStatus",
-                "MergeStatus",
-                "SendStatus",
-                "SendUnknown",
-                "SetStatus"
-            ],
-            "metadata": {
-                "description": ""
-            }
-        },
-        {
             "name": "Get location of a parking place",
             "nodes": [
                 "GeoParkingPosition",
@@ -88,6 +74,21 @@
                 "SetLatitude",
                 "SetLongitude",
                 "SendKeyForItem"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Get status of a parking place",
+            "nodes": [
+                "CreateResponse",
+                "GetParkingStatus",
+                "MergeStatus",
+                "SendStatus",
+                "SendUnknown",
+                "SetStatus",
+                "flowhub-bigiot-bridge/CategoryToNumber_ep40j"
             ],
             "metadata": {
                 "description": ""
@@ -169,8 +170,8 @@
             "component": "redis/GeoPos",
             "metadata": {
                 "label": "GeoParkingPosition",
-                "x": 828,
-                "y": 468,
+                "x": 1116,
+                "y": 396,
                 "width": 72,
                 "height": 72
             }
@@ -239,7 +240,7 @@
             "component": "strings/SendString",
             "metadata": {
                 "label": "SendLongitude",
-                "x": 1404,
+                "x": 1548,
                 "y": 468,
                 "width": 72,
                 "height": 72
@@ -260,7 +261,7 @@
             "metadata": {
                 "label": "SendKeyForItem",
                 "x": 828,
-                "y": 324,
+                "y": 360,
                 "width": 72,
                 "height": 72
             }
@@ -271,6 +272,16 @@
                 "label": "AllResults",
                 "x": 1980,
                 "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/CategoryToNumber_ep40j": {
+            "component": "flowhub-bigiot-bridge/CategoryToNumber",
+            "metadata": {
+                "label": "CategoryToNumber",
+                "x": 1296,
+                "y": 0,
                 "width": 72,
                 "height": 72
             }
@@ -500,19 +511,6 @@
         },
         {
             "src": {
-                "process": "MergeStatus",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "SetStatus",
-                "port": "value"
-            },
-            "metadata": {
-                "route": 3
-            }
-        },
-        {
-            "src": {
                 "process": "SetStatus",
                 "port": "out"
             },
@@ -717,6 +715,32 @@
             },
             "metadata": {
                 "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "MergeStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CategoryToNumber_ep40j",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CategoryToNumber_ep40j",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetStatus",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 3
             }
         },
         {
