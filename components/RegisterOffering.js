@@ -60,9 +60,10 @@ exports.getComponent = function () {
     input.getData('activate');
     const config = input.getData('config');
     const provider = new BigIotProvider(config.provider_id, config.provider_secret);
+    const offerings = c.offerings[input.scope].slice(0);
     provider.authenticate()
       .then(() => {
-        const registers = c.offerings[input.scope].map(offering => provider.register(offering));
+        const registers = offerings.map(offering => provider.register(offering));
         return Promise.all(registers);
       })
       .then(() => {
