@@ -693,6 +693,19 @@
         },
         {
             "src": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "empty"
+            },
+            "tgt": {
+                "process": "AllResults",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
                 "process": "GeoParkingPosition",
                 "port": "error"
             },
