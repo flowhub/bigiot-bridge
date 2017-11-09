@@ -347,7 +347,7 @@
             }
         },
         {
-            "data": "5000",
+            "data": 5000,
             "tgt": {
                 "process": "core/Kick_giafk",
                 "port": "data"
