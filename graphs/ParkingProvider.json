@@ -6,8 +6,18 @@
             "type": "noflo-nodejs"
         }
     },
-    "inports": {},
-    "outports": {},
+    "inports": {
+        "hostname": {
+            "process": "Config",
+            "port": "hostname"
+        }
+    },
+    "outports": {
+        "app": {
+            "process": "Provider",
+            "port": "app"
+        }
+    },
     "groups": [],
     "processes": {
         "Config": {
@@ -328,13 +338,6 @@
             },
             "metadata": {
                 "route": 1
-            }
-        },
-        {
-            "data": "localhost",
-            "tgt": {
-                "process": "Config",
-                "port": "hostname"
             }
         },
         {
