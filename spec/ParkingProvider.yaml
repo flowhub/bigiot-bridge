@@ -76,3 +76,31 @@ cases:
   expect:
     fetcherror:
       contains: 'status code:'
+---
+name: "Storing parking data"
+topic: "flowhub-bigiot-bridge/UpdateParkingData"
+fixture:
+  type: 'fbp'
+  data: |
+    INPORT=Fetch.IN:IN
+    OUTPORT=Result.OUT:OUT
+    OUTPORT=Result.ERROR:ERROR
+    # Env vars
+    'BAHNPARK_API_TOKEN' -> KEY ApiToken(core/ReadEnv)
+    'REDIS_URL' -> KEY RedisUrl(core/ReadEnv)
+    # Data flow
+    ApiToken OUT -> TOKEN Fetch(FetchParkingData)
+    RedisUrl OUT -> REDISURL Save(PersistData)
+    Fetch OUT -> IN Save
+    Save OUT -> IN[0] Result(flow/Race)
+    Fetch ERROR -> ERROR Result
+    Save ERROR -> ERROR Result
+cases:
+-
+  name: 'when started'
+  assertion: 'should fetch and save data'
+  inputs:
+    in: true
+  expect:
+    out:
+      type: 'array'
