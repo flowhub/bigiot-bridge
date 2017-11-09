@@ -1,0 +1,53 @@
+---
+name: "Provider graph"
+topic: "flowhub-bigiot-bridge/Provider"
+fixture:
+  type: 'fbp'
+  data: |
+    INPORT=Config.HOSTNAME:HOSTNAME
+    INPORT=Request.IN:URL
+    OUTPORT=ServerReady.OUT:SERVER
+    OUTPORT=Request.OUT:RESPONSE
+    OUTPORT=Request.ERROR:ERRORRESPONSE
+    # Configure offering
+    'temperature' -> NAME TemperatureData(CreateDatatype)
+    'http://schema;org/airTemperatureValue' -> RDFURI TemperatureData
+    TemperatureData OUT -> OUTPUTDATA Offering(CreateOffering)
+    'Provider test offering' -> NAME Offering
+    'http://example.org/test' -> RDFURI Offering
+    'Berlin' -> EXTENT Offering
+    '/txl' -> URI Offering
+    # Set up provider server
+    Config(CreateConfig) OUT -> CONFIG Provider(Provider)
+    Offering OUT -> OFFERING Provider
+    # Handle request-response cycle
+    'EDDT' -> STATION Metar(GetMetarWeather)
+    Provider REQUEST[0] -> IN Metar
+    Metar WEATHER -> RESPONSE Provider
+    Metar ERROR -> RESPONSE Provider
+    # We don't get anything sensible out when sending the server
+    # so we just send a string
+    'server is ready' -> STRING ServerReady(strings/SendString)
+    Provider APP -> IN ServerReady
+    # Setup for making requests
+    'BIGIOT_PROVIDER_SECRET' -> KEY ReadSecret(core/ReadEnv)
+    ReadSecret OUT -> SECRET Request(AuthenticatedHttpGet)
+cases:
+-
+  name: 'starting a server at localhost'
+  assertion: 'it should be able to start'
+  timeout: 10000
+  inputs:
+    hostname: 'localhost'
+  expect:
+    server:
+      equals: 'server is ready'
+-
+  name: 'making an authenticated request'
+  assertion: 'it should return temperature'
+  inputs:
+    url: 'http://localhost:5000/txl'
+  expect:
+    response:
+      path: '$.temperature'
+      type: 'number'
