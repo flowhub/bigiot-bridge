@@ -45,6 +45,7 @@ cases:
 -
   name: 'making an authenticated request'
   assertion: 'it should return temperature'
+  timeout: 4000
   inputs:
     url: 'http://localhost:5000/txl'
   expect:
