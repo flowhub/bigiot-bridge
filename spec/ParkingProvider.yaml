@@ -142,3 +142,12 @@ cases:
     response:
       path: '$.0.latitude'
       type: 'number'
+-
+  name: 'making a request with Helsinki coordinates'
+  assertion: 'it should not return parking places'
+  inputs:
+    url: 'http://localhost:5000/bahnparking?longitude=25.042828&latitude=60.254558&radius=10000'
+  expect:
+    response:
+      path: '$.length'
+      equals: 0
