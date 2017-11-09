@@ -99,6 +99,7 @@ cases:
 -
   name: 'when started'
   assertion: 'should fetch and save data'
+  timeout: 10000
   inputs:
     in: true
   expect:
