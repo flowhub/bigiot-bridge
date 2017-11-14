@@ -1,0 +1,642 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "PersistData",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Persist fetched parking information into Redis",
+        "icon": "database"
+    },
+    "inports": {
+        "in": {
+            "process": "GetSpaces",
+            "port": "in",
+            "metadata": {
+                "x": 190,
+                "y": 100,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redisurl": {
+            "process": "Connect",
+            "port": "url",
+            "metadata": {
+                "x": 180,
+                "y": 648,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "WaitForAll",
+            "port": "out",
+            "metadata": {
+                "x": 2016,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "WaitForAll",
+            "port": "error",
+            "metadata": {
+                "x": 2016,
+                "y": 648,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [
+        {
+            "name": "Store Spaces",
+            "nodes": [
+                "EachSpace",
+                "GetSpaceInfo",
+                "SaveSpace",
+                "SendAddSet"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Store Allocations",
+            "nodes": [
+                "EachAllocation",
+                "ExpireAllocation",
+                "SaveAllocation",
+                "SendExpiry",
+                "flowhub-bigiot-bridge/GetAllocationInfo_481to"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "GetSpaces": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetSpaces",
+                "x": 334,
+                "y": 100,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetSpacesItems": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetSpacesItems",
+                "x": 468,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "EachSpace": {
+            "component": "adapters/ObjectToPackets",
+            "metadata": {
+                "label": "EachSpace",
+                "x": 792,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Connect": {
+            "component": "redis/Connect",
+            "metadata": {
+                "label": "Connect",
+                "x": 432,
+                "y": 648,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SaveSpace": {
+            "component": "redis/GeoAdd",
+            "metadata": {
+                "label": "SaveSpace",
+                "x": 1440,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetSpaceInfo": {
+            "component": "flowhub-bigiot-bridge/GetSpaceInfo",
+            "metadata": {
+                "label": "GetSpaceInfo",
+                "x": 936,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendAddSet": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendAddSet",
+                "x": 1044,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetOccupancies": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetOccupancies",
+                "x": 468,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetAllocations": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetAllocations",
+                "x": 612,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "EachAllocation": {
+            "component": "adapters/ObjectToPackets",
+            "metadata": {
+                "label": "EachAllocation",
+                "x": 792,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/GetAllocationInfo_481to": {
+            "component": "flowhub-bigiot-bridge/GetAllocationInfo",
+            "metadata": {
+                "label": "GetAllocationInfo",
+                "x": 936,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SaveAllocation": {
+            "component": "redis/Set",
+            "metadata": {
+                "label": "SaveAllocation",
+                "x": 1116,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ExpireAllocation": {
+            "component": "redis/Expire",
+            "metadata": {
+                "label": "ExpireAllocation",
+                "x": 1440,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendExpiry": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendExpiry",
+                "x": 1296,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "WaitForAll": {
+            "component": "flow/All",
+            "metadata": {
+                "label": "WaitForAll",
+                "x": 1872,
+                "y": 540,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "GetSpaces",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetSpacesItems",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "GetSpacesItems",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "EachSpace",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "GetSpaceInfo",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "SendAddSet",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "SendAddSet",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SaveSpace",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "GetSpaceInfo",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "SaveSpace",
+                "port": "member"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "GetSpaceInfo",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "SaveSpace",
+                "port": "latitude"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "GetSpaceInfo",
+                "port": "longitude"
+            },
+            "tgt": {
+                "process": "SaveSpace",
+                "port": "longitude"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "Connect",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "SaveSpace",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "EachSpace",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetSpaceInfo",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "GetSpaces",
+                "port": "object"
+            },
+            "tgt": {
+                "process": "GetOccupancies",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "GetOccupancies",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetAllocations",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "GetAllocations",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "EachAllocation",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "EachAllocation",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetAllocationInfo_481to",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetAllocationInfo_481to",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "SaveAllocation",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetAllocationInfo_481to",
+                "port": "category"
+            },
+            "tgt": {
+                "process": "SaveAllocation",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetAllocationInfo_481to",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "ExpireAllocation",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "SaveAllocation",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SendExpiry",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "SendExpiry",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ExpireAllocation",
+                "port": "expire"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "Connect",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "SaveAllocation",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Connect",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "ExpireAllocation",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Connect",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "WaitForAll",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "SaveSpace",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "WaitForAll",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "SaveAllocation",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "WaitForAll",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ExpireAllocation",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "WaitForAll",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "SaveSpace",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "WaitForAll",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ExpireAllocation",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "WaitForAll",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "data": "spaces",
+            "tgt": {
+                "process": "GetSpaces",
+                "port": "key"
+            }
+        },
+        {
+            "data": "items",
+            "tgt": {
+                "process": "GetSpacesItems",
+                "port": "key"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "GetSpacesItems",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "GetSpaces",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": "occupancy",
+            "tgt": {
+                "process": "GetOccupancies",
+                "port": "key"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "GetOccupancies",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "GetAllocations",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": "allocations",
+            "tgt": {
+                "process": "GetAllocations",
+                "port": "key"
+            }
+        },
+        {
+            "data": "parkspaces",
+            "tgt": {
+                "process": "SendAddSet",
+                "port": "string"
+            }
+        },
+        {
+            "data": "600",
+            "tgt": {
+                "process": "SendExpiry",
+                "port": "string"
+            }
+        }
+    ]
+}

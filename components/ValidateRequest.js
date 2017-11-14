@@ -29,7 +29,6 @@ exports.getComponent = function () {
         break;
     }
     // TODO: Actually validate input data
-    console.log(req.payload);
     output.sendDone({
       req,
     });

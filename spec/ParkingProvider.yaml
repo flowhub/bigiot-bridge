@@ -76,3 +76,85 @@ cases:
   expect:
     fetcherror:
       contains: 'status code:'
+---
+name: "Storing parking data"
+topic: "flowhub-bigiot-bridge/UpdateParkingData"
+fixture:
+  type: 'fbp'
+  data: |
+    INPORT=Fetch.IN:IN
+    OUTPORT=Result.OUT:OUT
+    OUTPORT=Result.ERROR:ERROR
+    # Env vars
+    'BAHNPARK_API_TOKEN' -> KEY ApiToken(core/ReadEnv)
+    'REDIS_URL' -> KEY RedisUrl(core/ReadEnv)
+    # Data flow
+    ApiToken OUT -> TOKEN Fetch(FetchParkingData)
+    RedisUrl OUT -> REDISURL Save(PersistData)
+    Fetch OUT -> IN Save
+    Save OUT -> IN[0] Result(flow/Race)
+    Fetch ERROR -> ERROR Result
+    Save ERROR -> ERROR Result
+cases:
+-
+  name: 'when started'
+  assertion: 'should fetch and save data'
+  timeout: 10000
+  inputs:
+    in: true
+  expect:
+    out:
+      type: 'array'
+---
+name: "Serving parking data"
+topic: "flowhub-bigiot-bridge/ParkingProvider"
+fixture:
+  type: 'fbp'
+  data: |
+    INPORT=Provider.HOSTNAME:HOSTNAME
+    INPORT=Request.IN:URL
+    OUTPORT=ServerReady.OUT:SERVER
+    OUTPORT=Request.OUT:RESPONSE
+    OUTPORT=Request.ERROR:ERRORRESPONSE
+    # We don't get anything sensible out when sending the server
+    # so we just send a string
+    'server is ready' -> STRING ServerReady(strings/SendString)
+    Provider(ParkingProvider) APP -> IN ServerReady
+    # Setup for making requests
+    'BIGIOT_PROVIDER_SECRET' -> KEY ReadSecret(core/ReadEnv)
+    ReadSecret OUT -> SECRET Request(AuthenticatedHttpGet)
+cases:
+-
+  name: 'starting a server at localhost'
+  assertion: 'it should be able to start'
+  timeout: 10000
+  inputs:
+    hostname: 'localhost'
+  expect:
+    server:
+      equals: 'server is ready'
+-
+  name: 'making a request with Berlin coordinates'
+  assertion: 'it should return parking places'
+  inputs:
+    url: 'http://localhost:5000/bahnparking?longitude=13.366282&latitude=52.524291&radius=10000'
+  expect:
+    response:
+      -
+        path: '$.0.latitude'
+        type: 'number'
+      -
+        path: '$.0.longitude'
+        type: 'number'
+      -
+        path: '$.0.vacant'
+        type: 'number'
+-
+  name: 'making a request with Helsinki coordinates'
+  assertion: 'it should not return parking places'
+  inputs:
+    url: 'http://localhost:5000/bahnparking?longitude=25.042828&latitude=60.254558&radius=10000'
+  expect:
+    response:
+      path: '$.length'
+      equals: 0

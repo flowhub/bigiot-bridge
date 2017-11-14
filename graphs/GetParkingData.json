@@ -1,0 +1,802 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "GetParkingData",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Read requested parking data from Redis",
+        "icon": "database"
+    },
+    "inports": {
+        "in": {
+            "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+            "port": "in",
+            "metadata": {
+                "x": 0,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis": {
+            "process": "RedisConfig",
+            "port": "in",
+            "metadata": {
+                "x": 0,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "AllResults",
+            "port": "out",
+            "metadata": {
+                "x": 2160,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "AllResults",
+            "port": "error",
+            "metadata": {
+                "x": 2160,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [
+        {
+            "name": "Find parking in area",
+            "nodes": [
+                "SendKey",
+                "adapters/ObjectToPackets_5dsg0",
+                "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "redis/GeoRadius_px0sb"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Get location of a parking place",
+            "nodes": [
+                "GeoParkingPosition",
+                "SendLatitude",
+                "SendLongitude",
+                "SetLatitude",
+                "SetLongitude",
+                "SendKeyForItem"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Get status of a parking place",
+            "nodes": [
+                "CreateResponse",
+                "GetParkingStatus",
+                "MergeStatus",
+                "SendStatus",
+                "SendUnknown",
+                "SetStatus",
+                "flowhub-bigiot-bridge/CategoryToNumber_ep40j"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "redis/GeoRadius_px0sb": {
+            "component": "redis/GeoRadius",
+            "metadata": {
+                "label": "GeoRadius",
+                "x": 432,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendUnknown": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendUnknown",
+                "x": 1008,
+                "y": -108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GetParkingStatus": {
+            "component": "redis/Get",
+            "metadata": {
+                "label": "GetParkingStatus",
+                "x": 828,
+                "y": -144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "adapters/ObjectToPackets_5dsg0": {
+            "component": "adapters/ObjectToPackets",
+            "metadata": {
+                "label": "ObjectToPackets",
+                "x": 576,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19": {
+            "component": "flowhub-bigiot-bridge/HandlePositionedRequest",
+            "metadata": {
+                "label": "HandlePositionedRequest",
+                "x": 144,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendKey": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendKey",
+                "x": 324,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "RedisConfig": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "RedisConfig",
+                "x": 144,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GeoParkingPosition": {
+            "component": "redis/GeoPos",
+            "metadata": {
+                "label": "GeoParkingPosition",
+                "x": 1116,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "CreateResponse": {
+            "component": "objects/CreateObject",
+            "metadata": {
+                "label": "CreateResponse",
+                "x": 1008,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetLongitude": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetLongitude",
+                "x": 1728,
+                "y": 540,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetStatus": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetStatus",
+                "x": 1440,
+                "y": -144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SetLatitude": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetLatitude",
+                "x": 1548,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendStatus": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendStatus",
+                "x": 1296,
+                "y": -216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendLatitude": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendLatitude",
+                "x": 1404,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendLongitude": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendLongitude",
+                "x": 1548,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "MergeStatus": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "MergeStatus",
+                "x": 1152,
+                "y": -144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendKeyForItem": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendKeyForItem",
+                "x": 828,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "AllResults": {
+            "component": "flow/Race",
+            "metadata": {
+                "label": "AllResults",
+                "x": 1980,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/CategoryToNumber_ep40j": {
+            "component": "flowhub-bigiot-bridge/CategoryToNumber",
+            "metadata": {
+                "label": "CategoryToNumber",
+                "x": 1296,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "GetParkingStatus",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "SendUnknown",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetParkingStatus",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "latitude"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "longitude"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "longitude"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "radius"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "radius"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "SendKey",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HandlePositionedRequest_4rj19",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "SendKey",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "RedisConfig",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "RedisConfig",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GetParkingStatus",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "RedisConfig",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GeoParkingPosition",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GeoParkingPosition",
+                "port": "member"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "SendUnknown",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "MergeStatus",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "GetParkingStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "MergeStatus",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "MergeStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SendStatus",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "CreateResponse",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetStatus",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "SendStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetStatus",
+                "port": "property"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "SetStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetLatitude",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "SetLatitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetLongitude",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "GeoParkingPosition",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "SendLatitude",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "SendLatitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetLatitude",
+                "port": "property"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "GeoParkingPosition",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "SetLatitude",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "GeoParkingPosition",
+                "port": "longitude"
+            },
+            "tgt": {
+                "process": "SendLongitude",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "SendLongitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetLongitude",
+                "port": "property"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "GeoParkingPosition",
+                "port": "longitude"
+            },
+            "tgt": {
+                "process": "SetLongitude",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "GetParkingStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "CreateResponse",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "GetParkingStatus",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "CreateResponse",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "SendKey",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SendKeyForItem",
+                "port": "string"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SendKeyForItem",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "SendKeyForItem",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GeoParkingPosition",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "SetLongitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "AllResults",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "adapters/ObjectToPackets_5dsg0",
+                "port": "empty"
+            },
+            "tgt": {
+                "process": "AllResults",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "GeoParkingPosition",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "AllResults",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "AllResults",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "MergeStatus",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CategoryToNumber_ep40j",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CategoryToNumber_ep40j",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SetStatus",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "data": "m",
+            "tgt": {
+                "process": "redis/GeoRadius_px0sb",
+                "port": "unit"
+            }
+        },
+        {
+            "data": "0",
+            "tgt": {
+                "process": "SendUnknown",
+                "port": "string"
+            }
+        },
+        {
+            "data": "parkspaces",
+            "tgt": {
+                "process": "SendKey",
+                "port": "string"
+            }
+        },
+        {
+            "data": "vacant",
+            "tgt": {
+                "process": "SendStatus",
+                "port": "string"
+            }
+        },
+        {
+            "data": "latitude",
+            "tgt": {
+                "process": "SendLatitude",
+                "port": "string"
+            }
+        },
+        {
+            "data": "longitude",
+            "tgt": {
+                "process": "SendLongitude",
+                "port": "string"
+            }
+        }
+    ]
+}
