@@ -19,6 +19,7 @@ Pre-alpha, not useful yet
 
 * [Docker](https://docker.com) is installed and daemon running
 * [BigIot marketplace](https://market.big-iot.org/) credentials (provider id+secret) 
+* [Redis](https://redis.io/) database instance running. Can be locally, via a Docker image, or a cloud service
 
 ### Setup
 
@@ -58,6 +59,7 @@ TODO: coming soon
 ### Prerequisites
 
 * An Heroku app with the [Container stack](https://devcenter.heroku.com/articles/container-registry-and-runtime) enabled
+* Heroku Redis addon enabled for the app
 * Heroku CLI tools installed locally, logged into the Container registry using `heroku container:login`
 
 ### Pushing
