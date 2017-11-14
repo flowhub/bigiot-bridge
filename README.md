@@ -42,11 +42,11 @@ To request data from the API without going through the marketplace, you will nee
 Create it using:
 
 ```
-node -e "console.log(require('jsonwebtoken').sign({}, Buffer.from(process.env.BIGIOT_PROVIDER_SECRET, 'base64'), {expiresIn:'1h'}))"
+export TOKEN=`node -e "console.log(require('jsonwebtoken').sign({}, Buffer.from(process.env.BIGIOT_PROVIDER_SECRET, 'base64'), {expiresIn:'1h'}))"`
 ```
 
 ```
-curl -H 'Authentication: Bearer $TOKEN' http://localhost:5000/txl
+curl -H "Authorization: Bearer $TOKEN" http://localhost:5000/txl
 ```
 
 ### Configuring and adding new offerings
