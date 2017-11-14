@@ -3,11 +3,15 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/flowhub/bigiot-bridge.svg)](https://greenkeeper.io/)
 
 Bridge for providing data as offerings in the [BIG IoT](http://big-iot.eu/) marketplace,
-using the Flowhub IoT platform.
+using the Flowhub IoT platform with the [NoFlo](https://noflojs.org) Flow-based-programming runtime.
 
 ## Status
 
-Pre-alpha, not useful yet
+0.1: **Alpha**
+
+* Can expose single dataset as an offering in BigIoT marketplace
+* Example using the Deutche Bahn public API is provided
+* A public service instance is running on https://flowhub-bigiot-bridge.herokuapp.com/ since November 2017
 
 ## License
 
@@ -51,8 +55,17 @@ curl -H "Authorization: Bearer $TOKEN" http://localhost:5000/txl
 ```
 
 ### Configuring and adding new offerings
-TODO: coming soon
 
+The offerings are set up as a NoFlo graph, a 'Data Provider'.
+This graph should use the `Provider` component, and:
+
+- Set up the BigIot offering description, send it to `OFFERING` port
+- Setup configuration and send it to `CONFIG` port
+- Connect to the `REQUEST` port. On data, perform requested query
+- Respond with the returned data by sending to `RESPONSE` port
+
+Examples can be found in the "ParkingProvider" and "WeatherProvider" graphs,
+and the "Provider" and "ParkingProvider" tests.
 
 ## Deploying to Heroku
 
@@ -66,3 +79,15 @@ TODO: coming soon
 
     docker-compose build
     heroku container:push web
+
+
+## Best practices
+
+### Local caching
+
+The data provider may look up the data in memory or local database, or fetch from external APIs.
+It is recommended for data that changes slowly that they are fetched periodically separately from the HTTP requests 
+nd cached in a local database like Redis.
+The data provider in the HTTP request path then only queries the local Redis database.
+This is expecially for third-party APIs, which have an unknown amount of latency/uptime.
+The third-party APIs may also not support the desired querying methods, like geo-based queries.
