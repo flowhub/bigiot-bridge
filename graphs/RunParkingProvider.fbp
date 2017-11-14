@@ -1,0 +1,3 @@
+'server running' -> STRING ServerReady(strings/SendString) -> out(core/Output)
+Provider(ParkingProvider) APP -> IN ServerReady
+'HOSTNAME' -> KEY ReadHostname(core/ReadEnv) -> HOSTNAME Provider
