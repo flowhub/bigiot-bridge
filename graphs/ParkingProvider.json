@@ -341,7 +341,7 @@
             }
         },
         {
-            "data": "http://schema.org/parkingSiteManagement",
+            "data": "https://schema.big-iot.org/mobility/ParkingSiteStatus",
             "tgt": {
                 "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
                 "port": "rdfuri"
@@ -369,14 +369,14 @@
             }
         },
         {
-            "data": "http://schema.org/parkingNumberOfVacantSpaces ",
+            "data": "https://schema.big-iot.org/mobility/parkingNumberOfVacantSpaces",
             "tgt": {
                 "process": "NumberOfVacantSpaces",
                 "port": "rdfuri"
             }
         },
         {
-            "data": "number",
+            "data": "vacant",
             "tgt": {
                 "process": "NumberOfVacantSpaces",
                 "port": "name"

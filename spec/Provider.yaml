@@ -11,7 +11,7 @@ fixture:
     OUTPORT=Request.ERROR:ERRORRESPONSE
     # Configure offering
     'temperature' -> NAME TemperatureData(CreateDatatype)
-    'http://schema;org/airTemperatureValue' -> RDFURI TemperatureData
+    'http://schema.big-iot.org/environment/AirTemperature' -> RDFURI TemperatureData
     TemperatureData OUT -> OUTPUTDATA Offering(CreateOffering)
     'Provider test offering' -> NAME Offering
     'http://example.org/test' -> RDFURI Offering

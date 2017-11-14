@@ -778,7 +778,7 @@
             }
         },
         {
-            "data": "number",
+            "data": "vacant",
             "tgt": {
                 "process": "SendStatus",
                 "port": "string"
