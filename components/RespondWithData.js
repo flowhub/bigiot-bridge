@@ -21,8 +21,12 @@ exports.getComponent = function () {
     const [req, data] = input.getData('req', 'data');
     if (data instanceof Error) {
       // Data provider failed
-      console.error(data);
       req.res.status(500).send('Request failed');
+      output.done();
+      return;
+    }
+    if (Array.isArray(data)) {
+      req.res.json(data.filter(val => val !== null));
       output.done();
       return;
     }
