@@ -19,6 +19,13 @@ exports.getComponent = function () {
       return;
     }
     const [req, data] = input.getData('req', 'data');
+    if (data instanceof Error) {
+      // Data provider failed
+      console.error(data);
+      req.res.status(500).send('Request failed');
+      output.done();
+      return;
+    }
     req.res.json(data);
     output.done();
   });
