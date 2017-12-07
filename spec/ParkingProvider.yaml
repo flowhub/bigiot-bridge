@@ -186,3 +186,28 @@ cases:
     response:
       path: '$.length'
       equals: 0
+-
+  name: 'making a Cologne request with Cologne coordinates'
+  assertion: 'it should return DB parking places'
+  inputs:
+    url: 'http://localhost:5000/cologneparking?longitude=6.9603&latitude=50.9375&radius=10000'
+  expect:
+    response:
+      -
+        path: '$.0.latitude'
+        type: 'number'
+      -
+        path: '$.0.longitude'
+        type: 'number'
+      -
+        path: '$.0.vacant'
+        type: 'number'
+-
+  name: 'making a Cologne request with Berlin coordinates'
+  assertion: 'it should not return parking places'
+  inputs:
+    url: 'http://localhost:5000/cologneparking?longitude=13.366282&latitude=52.524291&radius=10000'
+  expect:
+    response:
+      path: '$.length'
+      equals: 0
