@@ -9,13 +9,25 @@
     "inports": {
         "hostname": {
             "process": "Config",
-            "port": "hostname"
+            "port": "hostname",
+            "metadata": {
+                "x": 0,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "outports": {
         "app": {
             "process": "Provider",
-            "port": "app"
+            "port": "app",
+            "metadata": {
+                "x": 828,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "groups": [],
@@ -429,6 +441,13 @@
             "tgt": {
                 "process": "RedisUrl",
                 "port": "key"
+            }
+        },
+        {
+            "data": "parkspaces",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "port": "dataset"
             }
         }
     ]
