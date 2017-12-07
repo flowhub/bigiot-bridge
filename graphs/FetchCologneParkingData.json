@@ -21,22 +21,22 @@
         }
     },
     "outports": {
-        "errors": {
-            "process": "core/Merge_g00js",
-            "port": "out",
-            "metadata": {
-                "x": 1332,
-                "y": 432,
-                "width": 72,
-                "height": 72
-            }
-        },
         "out": {
             "process": "objects/GetObjectKey_uvgyw",
             "port": "out",
             "metadata": {
                 "x": 1332,
                 "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "core/Merge_g00js",
+            "port": "out",
+            "metadata": {
+                "x": 1332,
+                "y": 432,
                 "width": 72,
                 "height": 72
             }
@@ -275,4 +275,3 @@
         }
     ]
 }
-
