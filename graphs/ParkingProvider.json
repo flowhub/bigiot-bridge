@@ -11,8 +11,8 @@
             "process": "Config",
             "port": "hostname",
             "metadata": {
-                "x": 0,
-                "y": 0,
+                "x": 180,
+                "y": -72,
                 "width": 72,
                 "height": 72
             }
@@ -23,8 +23,8 @@
             "process": "Provider",
             "port": "app",
             "metadata": {
-                "x": 828,
-                "y": 252,
+                "x": 864,
+                "y": 432,
                 "width": 72,
                 "height": 72
             }
@@ -106,8 +106,8 @@
             "component": "core/Output",
             "metadata": {
                 "label": "Errors",
-                "x": 828,
-                "y": 396,
+                "x": 864,
+                "y": 540,
                 "width": 72,
                 "height": 72
             }
@@ -127,7 +127,7 @@
             "metadata": {
                 "label": "ConnectRedis",
                 "x": 432,
-                "y": 576,
+                "y": 504,
                 "width": 72,
                 "height": 72
             }
@@ -136,8 +136,28 @@
             "component": "flowhub-bigiot-bridge/GetParkingData",
             "metadata": {
                 "label": "GetParkingData",
-                "x": 576,
+                "x": 756,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/CreateOffering_uri05": {
+            "component": "flowhub-bigiot-bridge/CreateOffering",
+            "metadata": {
+                "label": "CreateOffering",
+                "x": 432,
                 "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/GetParkingData_xdjm7": {
+            "component": "flowhub-bigiot-bridge/GetParkingData",
+            "metadata": {
+                "label": "GetParkingData",
+                "x": 900,
+                "y": 252,
                 "width": 72,
                 "height": 72
             }
@@ -353,6 +373,149 @@
             }
         },
         {
+            "src": {
+                "process": "Latitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "inputdata"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "Latitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "outputdata"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "Longitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "inputdata"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "Longitude",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "outputdata"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "Radius",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "inputdata"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "NumberOfVacantSpaces",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "outputdata"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "offering"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "Provider",
+                "port": "request"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "response"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Provider",
+                "port": "response"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConnectRedis",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "port": "redis"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
             "data": "https://schema.big-iot.org/mobility/ParkingSiteStatus",
             "tgt": {
                 "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
@@ -447,6 +610,41 @@
             "data": "parkspaces",
             "tgt": {
                 "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "port": "dataset"
+            }
+        },
+        {
+            "data": "https://schema.big-iot.org/mobility/ParkingSiteStatus",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "rdfuri"
+            }
+        },
+        {
+            "data": "Cologne",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "extent"
+            }
+        },
+        {
+            "data": "/cologneparking",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "uri"
+            }
+        },
+        {
+            "data": "Cologne Parking",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "port": "name"
+            }
+        },
+        {
+            "data": "cologne-spaces",
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
                 "port": "dataset"
             }
         }
