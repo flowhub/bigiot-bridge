@@ -91,3 +91,8 @@ nd cached in a local database like Redis.
 The data provider in the HTTP request path then only queries the local Redis database.
 This is expecially for third-party APIs, which have an unknown amount of latency/uptime.
 The third-party APIs may also not support the desired querying methods, like geo-based queries.
+
+## Changes
+
+* 0.2.0 (December 12 2017)
+  - Added a second data source for the ParkingProvider: parking spaces in Cologne
