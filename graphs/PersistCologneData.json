@@ -1,0 +1,425 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "PersistCologneData",
+        "description": "Store Cologne parking data entries",
+        "icon": "cog",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {
+        "in": {
+            "process": "adapters/ObjectToPackets_qm8n9",
+            "port": "in",
+            "metadata": {
+                "x": 180,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redisurl": {
+            "process": "redis/Connect_y8vgt",
+            "port": "url",
+            "metadata": {
+                "x": 180,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "flow/All_qecoa",
+            "port": "out",
+            "metadata": {
+                "x": 1332,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "flow/All_qecoa",
+            "port": "error",
+            "metadata": {
+                "x": 1332,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "adapters/ObjectToPackets_qm8n9": {
+            "component": "adapters/ObjectToPackets",
+            "metadata": {
+                "label": "ObjectToPackets",
+                "x": 324,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp": {
+            "component": "flowhub-bigiot-bridge/GetCologneSpaceInfo",
+            "metadata": {
+                "label": "GetCologneSpaceInfo",
+                "x": 504,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_xrhg7": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 648,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis/GeoAdd_djqnm": {
+            "component": "redis/GeoAdd",
+            "metadata": {
+                "label": "GeoAdd",
+                "x": 792,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis/Connect_y8vgt": {
+            "component": "redis/Connect",
+            "metadata": {
+                "label": "Connect",
+                "x": 504,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis/Set_l3v4p": {
+            "component": "redis/Set",
+            "metadata": {
+                "label": "Set",
+                "x": 792,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_xr5nq": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 936,
+                "y": 504,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "redis/Expire_9zrg0": {
+            "component": "redis/Expire",
+            "metadata": {
+                "label": "Expire",
+                "x": 1044,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flow/All_qecoa": {
+            "component": "flow/All",
+            "metadata": {
+                "label": "All",
+                "x": 1188,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "adapters/ObjectToPackets_qm8n9",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "strings/SendString_xrhg7",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_xrhg7",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "member"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "latitude"
+            },
+            "tgt": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "latitude"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "longitude"
+            },
+            "tgt": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "longitude"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Connect_y8vgt",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Connect_y8vgt",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "redis/Set_l3v4p",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "redis/Set_l3v4p",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "capacity"
+            },
+            "tgt": {
+                "process": "redis/Set_l3v4p",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Set_l3v4p",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_xr5nq",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Connect_y8vgt",
+                "port": "client"
+            },
+            "tgt": {
+                "process": "redis/Expire_9zrg0",
+                "port": "client"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/GetCologneSpaceInfo_ezuvp",
+                "port": "id"
+            },
+            "tgt": {
+                "process": "redis/Expire_9zrg0",
+                "port": "key"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_xr5nq",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "redis/Expire_9zrg0",
+                "port": "expire"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "flow/All_qecoa",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Set_l3v4p",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "flow/All_qecoa",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Connect_y8vgt",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "flow/All_qecoa",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Expire_9zrg0",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "flow/All_qecoa",
+                "port": "error"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "redis/GeoAdd_djqnm",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flow/All_qecoa",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "redis/Expire_9zrg0",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flow/All_qecoa",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "data": "cologne-spaces",
+            "tgt": {
+                "process": "strings/SendString_xrhg7",
+                "port": "string"
+            }
+        },
+        {
+            "data": "600",
+            "tgt": {
+                "process": "strings/SendString_xr5nq",
+                "port": "string"
+            }
+        }
+    ]
+}
+

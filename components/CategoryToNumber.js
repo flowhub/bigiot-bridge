@@ -7,14 +7,26 @@ exports.getComponent = function () {
   c.inPorts.add('in', {
     datatype: 'string',
   });
+  c.inPorts.add('dataset', {
+    datatype: 'string',
+    control: true,
+  });
   c.outPorts.add('out', {
     datatype: 'number',
   });
   c.process((input, output) => {
-    if (!input.hasData('in')) {
+    if (!input.hasData('in', 'dataset')) {
       return;
     }
     const data = input.getData('in');
+    const dataset = input.getData('dataset');
+    if (dataset !== 'parkspaces') {
+      // No need to convert
+      output.sendDone({
+        out: parseInt(data, 10),
+      });
+      return;
+    }
     let number = 0;
     switch (data) {
       case '1':

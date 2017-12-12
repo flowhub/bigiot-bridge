@@ -1,0 +1,277 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "FetchCologneParkingData",
+        "description": "Get latest parking data for Cologne",
+        "icon": "cog",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {
+        "in": {
+            "process": "flowhub-bigiot-bridge/CologneParkingRequest_hxnks",
+            "port": "in",
+            "metadata": {
+                "x": 144,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "objects/GetObjectKey_uvgyw",
+            "port": "out",
+            "metadata": {
+                "x": 1332,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "core/Merge_g00js",
+            "port": "out",
+            "metadata": {
+                "x": 1332,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "flowhub-bigiot-bridge/HttpGet_qdyma": {
+            "component": "flowhub-bigiot-bridge/HttpGet",
+            "metadata": {
+                "label": "HttpGet",
+                "x": 432,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Merge_g00js": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Merge",
+                "x": 1188,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flowhub-bigiot-bridge/CologneParkingRequest_hxnks": {
+            "component": "flowhub-bigiot-bridge/CologneParkingRequest",
+            "metadata": {
+                "label": "CologneParkingRequest",
+                "x": 288,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/ParseJson_3ovbp": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "ParseJson",
+                "x": 576,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_f2xri": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 684,
+                "y": 36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "objects/GetObjectKey_uvgyw": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "GetObjectKey",
+                "x": 792,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "objects/CreateError_yc5gk": {
+            "component": "objects/CreateError",
+            "metadata": {
+                "label": "CreateError",
+                "x": 1080,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_ex0hp": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 972,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HttpGet_qdyma",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_g00js",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CologneParkingRequest_hxnks",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_g00js",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/CologneParkingRequest_hxnks",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/HttpGet_qdyma",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "flowhub-bigiot-bridge/HttpGet_qdyma",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/ParseJson_3ovbp",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_3ovbp",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_g00js",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_3ovbp",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_f2xri",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/SendString_f2xri",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_uvgyw",
+                "port": "key"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_3ovbp",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_uvgyw",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "objects/CreateError_yc5gk",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_g00js",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_uvgyw",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "strings/SendString_ex0hp",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_ex0hp",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/CreateError_yc5gk",
+                "port": "start"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "features",
+            "tgt": {
+                "process": "strings/SendString_f2xri",
+                "port": "string"
+            }
+        },
+        {
+            "data": "No parking features found",
+            "tgt": {
+                "process": "strings/SendString_ex0hp",
+                "port": "string"
+            }
+        }
+    ]
+}

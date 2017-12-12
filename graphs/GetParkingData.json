@@ -28,6 +28,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "dataset": {
+            "process": "core/Repeat_hyqxe",
+            "port": "in",
+            "metadata": {
+                "x": 0,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "outports": {
@@ -100,8 +110,8 @@
             "component": "redis/GeoRadius",
             "metadata": {
                 "label": "GeoRadius",
-                "x": 432,
-                "y": 144,
+                "x": 576,
+                "y": 252,
                 "width": 72,
                 "height": 72
             }
@@ -130,8 +140,8 @@
             "component": "adapters/ObjectToPackets",
             "metadata": {
                 "label": "ObjectToPackets",
-                "x": 576,
-                "y": 144,
+                "x": 720,
+                "y": 252,
                 "width": 72,
                 "height": 72
             }
@@ -140,8 +150,8 @@
             "component": "flowhub-bigiot-bridge/HandlePositionedRequest",
             "metadata": {
                 "label": "HandlePositionedRequest",
-                "x": 144,
-                "y": 108,
+                "x": 288,
+                "y": 324,
                 "width": 72,
                 "height": 72
             }
@@ -150,8 +160,8 @@
             "component": "strings/SendString",
             "metadata": {
                 "label": "SendKey",
-                "x": 324,
-                "y": 0,
+                "x": 468,
+                "y": 288,
                 "width": 72,
                 "height": 72
             }
@@ -282,6 +292,16 @@
                 "label": "CategoryToNumber",
                 "x": 1296,
                 "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Repeat_hyqxe": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": 252,
+                "y": -36,
                 "width": 72,
                 "height": 72
             }
@@ -757,6 +777,32 @@
             }
         },
         {
+            "src": {
+                "process": "core/Repeat_hyqxe",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "SendKey",
+                "port": "string"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_hyqxe",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "flowhub-bigiot-bridge/CategoryToNumber_ep40j",
+                "port": "dataset"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
             "data": "m",
             "tgt": {
                 "process": "redis/GeoRadius_px0sb",
@@ -764,16 +810,9 @@
             }
         },
         {
-            "data": "0",
+            "data": "-1",
             "tgt": {
                 "process": "SendUnknown",
-                "port": "string"
-            }
-        },
-        {
-            "data": "parkspaces",
-            "tgt": {
-                "process": "SendKey",
                 "port": "string"
             }
         },
