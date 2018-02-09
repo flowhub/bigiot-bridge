@@ -516,7 +516,7 @@
             }
         },
         {
-            "data": "https://schema.big-iot.org/mobility/ParkingSiteStatus",
+            "data": "urn:big-iot:ParkingSiteCategory",
             "tgt": {
                 "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
                 "port": "rdfuri"
@@ -614,7 +614,7 @@
             }
         },
         {
-            "data": "https://schema.big-iot.org/mobility/ParkingSiteStatus",
+            "data": "urn:big-iot:ParkingSiteCategory",
             "tgt": {
                 "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
                 "port": "rdfuri"

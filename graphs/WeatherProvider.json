@@ -222,7 +222,7 @@
             }
         },
         {
-            "data": "http://schema.org/airTemperatureValue",
+            "data": "urn:big-iot:EnvironmentalIndicatorCategory",
             "tgt": {
                 "process": "Temperature",
                 "port": "rdfuri"
