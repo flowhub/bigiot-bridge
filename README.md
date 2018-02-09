@@ -94,5 +94,8 @@ The third-party APIs may also not support the desired querying methods, like geo
 
 ## Changes
 
+* 0.3.0 (February 9 2018)
+  - Compatibility with BIG IoT Marketplace 0.10
+  - Updated categories to match the [BIG IoT category list](https://big-iot.github.io/categories/)
 * 0.2.0 (December 12 2017)
   - Added a second data source for the ParkingProvider: parking spaces in Cologne
