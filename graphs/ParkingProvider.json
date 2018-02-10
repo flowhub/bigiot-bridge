@@ -52,10 +52,10 @@
                 "height": 72
             }
         },
-        "flowhub-bigiot-bridge/CreateOffering_fjxkp": {
+        "BahnOffering": {
             "component": "flowhub-bigiot-bridge/CreateOffering",
             "metadata": {
-                "label": "CreateOffering",
+                "label": "BahnOffering",
                 "x": 432,
                 "y": 252,
                 "width": 72,
@@ -132,30 +132,30 @@
                 "height": 72
             }
         },
-        "flowhub-bigiot-bridge/GetParkingData_d15kz": {
+        "BahnParkingData": {
             "component": "flowhub-bigiot-bridge/GetParkingData",
             "metadata": {
-                "label": "GetParkingData",
+                "label": "BahnParkingData",
                 "x": 756,
                 "y": 252,
                 "width": 72,
                 "height": 72
             }
         },
-        "flowhub-bigiot-bridge/CreateOffering_uri05": {
+        "CologneOffering": {
             "component": "flowhub-bigiot-bridge/CreateOffering",
             "metadata": {
-                "label": "CreateOffering",
+                "label": "CologneOffering",
                 "x": 432,
                 "y": 396,
                 "width": 72,
                 "height": 72
             }
         },
-        "flowhub-bigiot-bridge/GetParkingData_xdjm7": {
+        "CologneParkingData": {
             "component": "flowhub-bigiot-bridge/GetParkingData",
             "metadata": {
-                "label": "GetParkingData",
+                "label": "CologneParkingData",
                 "x": 900,
                 "y": 252,
                 "width": 72,
@@ -179,7 +179,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "out"
             },
             "tgt": {
@@ -196,7 +196,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "inputdata"
             },
             "metadata": {
@@ -209,7 +209,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "inputdata"
             },
             "metadata": {
@@ -222,7 +222,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "inputdata"
             },
             "metadata": {
@@ -261,7 +261,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "outputdata"
             },
             "metadata": {
@@ -274,7 +274,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "outputdata"
             },
             "metadata": {
@@ -287,7 +287,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "outputdata"
             },
             "metadata": {
@@ -326,7 +326,7 @@
                 "port": "client"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "process": "BahnParkingData",
                 "port": "redis"
             },
             "metadata": {
@@ -339,7 +339,7 @@
                 "port": "request"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "process": "BahnParkingData",
                 "port": "in"
             },
             "metadata": {
@@ -348,7 +348,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "process": "BahnParkingData",
                 "port": "out"
             },
             "tgt": {
@@ -361,7 +361,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "process": "BahnParkingData",
                 "port": "error"
             },
             "tgt": {
@@ -378,7 +378,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "inputdata"
             },
             "metadata": {
@@ -391,7 +391,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "outputdata"
             },
             "metadata": {
@@ -404,7 +404,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "inputdata"
             },
             "metadata": {
@@ -417,7 +417,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "outputdata"
             },
             "metadata": {
@@ -430,7 +430,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "inputdata"
             },
             "metadata": {
@@ -443,7 +443,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "outputdata"
             },
             "metadata": {
@@ -452,7 +452,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "out"
             },
             "tgt": {
@@ -469,7 +469,7 @@
                 "port": "request"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "process": "CologneParkingData",
                 "port": "in"
             },
             "metadata": {
@@ -478,7 +478,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "process": "CologneParkingData",
                 "port": "out"
             },
             "tgt": {
@@ -491,7 +491,7 @@
         },
         {
             "src": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "process": "CologneParkingData",
                 "port": "error"
             },
             "tgt": {
@@ -508,7 +508,7 @@
                 "port": "client"
             },
             "tgt": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "process": "CologneParkingData",
                 "port": "redis"
             },
             "metadata": {
@@ -518,28 +518,28 @@
         {
             "data": "urn:big-iot:ParkingSiteCategory",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "rdfuri"
             }
         },
         {
             "data": "Berlin",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "extent"
             }
         },
         {
             "data": "/bahnparking",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "uri"
             }
         },
         {
             "data": "Bahn Parking Berlin",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_fjxkp",
+                "process": "BahnOffering",
                 "port": "name"
             }
         },
@@ -609,42 +609,42 @@
         {
             "data": "parkspaces",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_d15kz",
+                "process": "BahnParkingData",
                 "port": "dataset"
             }
         },
         {
             "data": "urn:big-iot:ParkingSiteCategory",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "rdfuri"
             }
         },
         {
             "data": "Cologne",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "extent"
             }
         },
         {
             "data": "/cologneparking",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "uri"
             }
         },
         {
             "data": "Cologne Parking",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/CreateOffering_uri05",
+                "process": "CologneOffering",
                 "port": "name"
             }
         },
         {
             "data": "cologne-spaces",
             "tgt": {
-                "process": "flowhub-bigiot-bridge/GetParkingData_xdjm7",
+                "process": "CologneParkingData",
                 "port": "dataset"
             }
         }
