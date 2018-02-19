@@ -544,7 +544,7 @@
             }
         },
         {
-            "data": "https://schema.big-iot.org/mobility/parkingNumberOfVacantSpaces",
+            "data": "http://schema.big-iot.org/mobility/numberOfVacantParkingSpaces",
             "tgt": {
                 "process": "NumberOfVacantSpaces",
                 "port": "rdfuri"
