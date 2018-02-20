@@ -1,9 +1,7 @@
-# bigiot-bridge
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/flowhub/bigiot-bridge.svg)](https://greenkeeper.io/)
+# bigiot-bridge [![Greenkeeper badge](https://badges.greenkeeper.io/flowhub/bigiot-bridge.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/flowhub/bigiot-bridge.svg?branch=master)](https://travis-ci.org/flowhub/bigiot-bridge)
 
 Bridge for providing data as offerings in the [BIG IoT](http://big-iot.eu/) marketplace,
-using the Flowhub IoT platform with the [NoFlo](https://noflojs.org) Flow-based-programming runtime.
+using the [Flowhub IoT](https://flowhub.io/iot/) platform with the [NoFlo](https://noflojs.org) Flow-Based Programming runtime.
 
 ## Status
 
