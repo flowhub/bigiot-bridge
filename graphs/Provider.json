@@ -38,6 +38,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "anonymous": {
+            "process": "flowhub-bigiot-bridge/CheckAuthorization_9bbqa",
+            "port": "anonymous",
+            "metadata": {
+                "x": -144,
+                "y": 36,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "outports": {
