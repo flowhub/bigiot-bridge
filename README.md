@@ -7,10 +7,10 @@ using the Flowhub IoT platform with the [NoFlo](https://noflojs.org) Flow-based-
 
 ## Status
 
-0.1: **Alpha**
+0.3: **Production**
 
-* Can expose single dataset as an offering in BigIoT marketplace
-* Example using the Deutche Bahn public API is provided
+* Can expose multiple datasets as offerings in BigIoT marketplace
+* Example using the Deutche Bahn and City of Cologne public parking APIs is provided
 * A public service instance is running on https://flowhub-bigiot-bridge.herokuapp.com/ since November 2017
 
 ## License
