@@ -30,12 +30,12 @@
   },
   "scripts": {
     "pretest": "eslint components/*.js",
-    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --register=false --capture-output --secret test' spec/",
+    "test": "fbp-spec --secret test --address ws://localhost:3333 --command 'noflo-nodejs --port 3333 --capture-output --secret test' spec/",
     "build": "docker-compose build",
     "registry-login": "docker login --username $HEROKU_REGISTRY_USERNAME --password $HEROKU_REGISTRY_PASSWORD registry.heroku.com",
     "deploy": "docker tag flowhub/bigiot-bridge-web:latest registry.heroku.com/flowhub-bigiot-bridge/web && docker push registry.heroku.com/flowhub-bigiot-bridge/web",
     "tag": "docker tag flowhub/bigiot-bridge-web:latest flowhub/bigiot-bridge-web:$(git describe --always --tags)",
-    "dev": "./node_modules/.bin/noflo-nodejs --uuid 4b9b4b4f-ec6b-47c2-b9ce-0febb64af475 --register false --secret big-iot"
+    "dev": "./node_modules/.bin/noflo-nodejs --uuid 4b9b4b4f-ec6b-47c2-b9ce-0febb64af475 --secret big-iot"
   },
   "repository": {
     "type": "git",
