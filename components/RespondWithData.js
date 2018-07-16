@@ -19,6 +19,10 @@ exports.getComponent = function () {
       return;
     }
     const [req, data] = input.getData('req', 'data');
+
+    // Allow CORS, for browser support
+    req.res.header('Access-Control-Allow-Origin', '*');
+
     if (data instanceof Error) {
       // Data provider failed
       req.res.status(500).send('Request failed');
