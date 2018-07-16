@@ -50,5 +50,5 @@ cases:
     url: 'http://localhost:5000/txl'
   expect:
     response:
-      path: '$.temperature'
+      path: '$.data.temperature'
       type: 'number'
