@@ -22,7 +22,7 @@ exports.getComponent = function () {
     input.getData('in');
 
     const r = {
-      protocol: 'http:',
+      protocol: 'https:',
       host: 'www.stadt-koeln.de',
       path: '/externe-dienste/open-data/parking.php',
     };
