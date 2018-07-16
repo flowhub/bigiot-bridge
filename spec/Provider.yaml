@@ -52,3 +52,13 @@ cases:
     response:
       path: '$.data.temperature'
       type: 'number'
+-
+  name: 'making an authenticated request'
+  assertion: 'it should have CORS header enabled'
+  timeout: 4000
+  inputs:
+    url: 'http://localhost:5000/txl'
+  expect:
+    response:
+      path: '$.headers.access-control-allow-origin'
+      equals: '*'
