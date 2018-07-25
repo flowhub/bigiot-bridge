@@ -1,10 +1,16 @@
 const noflo = require('noflo');
 const url = require('url');
 const uuid = require('uuid');
+const cors = require('cors');
 
 const typesToMethods = {
   HTTP_GET: 'get',
 };
+
+function enableCors(app) {
+  app.use(cors());
+  app.options('*', cors()); // enable for pre-flight also
+}
 
 exports.getComponent = function () {
   const c = new noflo.Component();
@@ -41,6 +47,8 @@ exports.getComponent = function () {
       return;
     }
     const { pathname } = url.parse(endpoint.uri);
+
+    enableCors(app);
 
     // Set up Express route
     const route = app.route(pathname);

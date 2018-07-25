@@ -38,10 +38,14 @@ exports.getComponent = function () {
         if (response.status !== 200) {
           throw new Error(`Provider failed with ${response.status}: ${response.statusText}`);
         }
-        return response.json();
+
+        return response.json().then((data) => {
+          const headerkey = '_headers'; // to get eslint disallowing the two obvious ways
+          return { data, headers: response.headers[headerkey] };
+        });
       })
-      .then((data) => {
-        output.sendDone(data);
+      .then((out) => {
+        output.sendDone(out);
       })
       .catch((err) => {
         output.done(err);

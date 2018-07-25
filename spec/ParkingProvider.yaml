@@ -169,13 +169,13 @@ cases:
   expect:
     response:
       -
-        path: '$.0.latitude'
+        path: '$.data.0.latitude'
         type: 'number'
       -
-        path: '$.0.longitude'
+        path: '$.data.0.longitude'
         type: 'number'
       -
-        path: '$.0.vacant'
+        path: '$.data.0.vacant'
         type: 'number'
 -
   name: 'making a DB request with Helsinki coordinates'
@@ -184,7 +184,7 @@ cases:
     url: 'http://localhost:5000/bahnparking?longitude=25.042828&latitude=60.254558&radius=10000'
   expect:
     response:
-      path: '$.length'
+      path: '$.data.length'
       equals: 0
 -
   name: 'making a Cologne request with Cologne coordinates'
@@ -194,13 +194,13 @@ cases:
   expect:
     response:
       -
-        path: '$.0.latitude'
+        path: '$.data.0.latitude'
         type: 'number'
       -
-        path: '$.0.longitude'
+        path: '$.data.0.longitude'
         type: 'number'
       -
-        path: '$.0.vacant'
+        path: '$.data.0.vacant'
         type: 'number'
 -
   name: 'making a Cologne request with Berlin coordinates'
@@ -209,5 +209,5 @@ cases:
     url: 'http://localhost:5000/cologneparking?longitude=13.366282&latitude=52.524291&radius=10000'
   expect:
     response:
-      path: '$.length'
+      path: '$.data.length'
       equals: 0
