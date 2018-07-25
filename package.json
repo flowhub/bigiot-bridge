@@ -31,7 +31,7 @@
   },
   "scripts": {
     "pretest": "eslint components/*.js",
-    "test": "fbp-spec --secret test --address ws://localhost:3333 --command-timeout 5 --command 'noflo-nodejs --port 3333 --capture-output --secret test --open false' spec/",
+    "test": "fbp-spec --secret test --address ws://localhost:3333 --command-timeout 60 --command 'noflo-nodejs --port 3333 --capture-output --secret test --open false' spec/",
     "build": "docker-compose build",
     "registry-login": "docker login --username $HEROKU_REGISTRY_USERNAME --password $HEROKU_REGISTRY_PASSWORD registry.heroku.com",
     "deploy": "docker tag flowhub/bigiot-bridge-web:latest registry.heroku.com/flowhub-bigiot-bridge/web && docker push registry.heroku.com/flowhub-bigiot-bridge/web",
