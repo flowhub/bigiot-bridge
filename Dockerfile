@@ -15,4 +15,4 @@ USER flowuser
 # Note: EXPOSE is not supported by Heroku, application must respect $PORT
 EXPOSE 5000
 
-CMD ["node", "./node_modules/.bin/noflo-nodejs", "--open", "--false", "--graph", "graphs/RunParkingProvider.fbp"]
+CMD ["node", "./node_modules/.bin/noflo-nodejs", "--open", "false", "--graph", "graphs/RunParkingProvider.fbp"]
