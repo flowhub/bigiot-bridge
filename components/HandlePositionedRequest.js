@@ -29,7 +29,7 @@ exports.getComponent = function () {
     const defaults = {
       latitude: 52.2808478,
       longitude: 6.7278683,
-      radius: 100 * 1000,
+      radius: 1000 * 1000,
     };
     output.sendDone({
       latitude: parseFloat(params.latitude || defaults.latitude),
