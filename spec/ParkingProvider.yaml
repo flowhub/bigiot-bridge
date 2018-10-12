@@ -211,3 +211,12 @@ cases:
     response:
       path: '$.data.length'
       equals: 0
+-
+  name: 'not specifying any parameters'
+  assertion: 'it should return all parking places'
+  inputs:
+    url: 'http://localhost:5000/cologneparking'
+  expect:
+    response:
+      path: '$.data.length'
+      above: 40

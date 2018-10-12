@@ -25,10 +25,16 @@ exports.getComponent = function () {
       return;
     }
     const params = input.getData('in');
+    // defaults to all of Germany
+    const defaults = {
+      latitude: 52.2808478,
+      longitude: 6.7278683,
+      radius: 1000 * 1000,
+    };
     output.sendDone({
-      latitude: parseFloat(params.latitude),
-      longitude: parseFloat(params.longitude),
-      radius: parseFloat(params.radius || 100),
+      latitude: parseFloat(params.latitude || defaults.latitude),
+      longitude: parseFloat(params.longitude || defaults.longitude),
+      radius: parseFloat(params.radius || defaults.radius),
     });
   });
   return c;
